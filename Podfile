@@ -19,8 +19,6 @@ target 'Petulia' do
   pod 'Firebase/Core'
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
-  pod 'Firebase/Storage'
-  pod 'FirebaseFirestoreSwift'
   
   # Caching images
   pod 'Kingfisher', '~> 6.0'

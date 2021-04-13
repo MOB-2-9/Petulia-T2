@@ -23,7 +23,7 @@
 		697E7D6B24E9528C0039EBF2 /* confetti-falling.json in Resources */ = {isa = PBXBuildFile; fileRef = 697E7D6824E9528C0039EBF2 /* confetti-falling.json */; };
 		697E7D6C24E9528C0039EBF2 /* confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 697E7D6924E9528C0039EBF2 /* confetti.json */; };
 		697E7D6D24E9528C0039EBF2 /* thanks.json in Resources */ = {isa = PBXBuildFile; fileRef = 697E7D6A24E9528C0039EBF2 /* thanks.json */; };
-		697E7D7024E9535F0039EBF2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 697E7D6F24E9535F0039EBF2 /* Lottie */; };
+		697E7D7024E9535F0039EBF2 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 697E7D6F24E9535F0039EBF2 /* SwiftPackageProductDependency */; };
 		697E7D7224E954950039EBF2 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697E7D7124E954950039EBF2 /* LottieView.swift */; };
 		6983153D24E853B600E1566A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6983153C24E853B600E1566A /* HomeView.swift */; };
 		69E4432124E87AC300B8B3F1 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E4432024E87AC300B8B3F1 /* ListView.swift */; };
@@ -33,7 +33,7 @@
 		791F4E432581F9A000C5F457 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791F4E422581F9A000C5F457 /* SettingsView.swift */; };
 		791F4E46258217CC00C5F457 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791F4E45258217CC00C5F457 /* Color+Extension.swift */; };
 		7923467725761564005E2644 /* ClearButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923467625761564005E2644 /* ClearButtonStyle.swift */; };
-		7926ABDB256CE0AD00AD8D68 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7926ABDA256CE0AD00AD8D68 /* SDWebImageSwiftUI */; };
+		7926ABDB256CE0AD00AD8D68 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 7926ABDA256CE0AD00AD8D68 /* SwiftPackageProductDependency */; };
 		7926ABDE256CE48800AD8D68 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7926ABDD256CE48800AD8D68 /* AsyncImageView.swift */; };
 		7926ABE1256D430900AD8D68 /* PetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7926ABE0256D430900AD8D68 /* PetType.swift */; };
 		7930A4B42567F67E00746ADE /* StreachingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7930A4B32567F67E00746ADE /* StreachingHeader.swift */; };
@@ -65,12 +65,15 @@
 		79F93581258B75BF00C9CDCD /* ColoredLabeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F93580258B75BF00C9CDCD /* ColoredLabeStyle.swift */; };
 		79FC94762584D2ED001735C4 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC94752584D2ED001735C4 /* TileView.swift */; };
 		79FF944C256A562D00149140 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF944B256A562D00149140 /* Collection+Extension.swift */; };
+		A6E0CB1F799CD964E1235627 /* Pods_Petulia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A762D3FCD33220583E434E /* Pods_Petulia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		158BE86E7F99D8C63797420F /* Pods-Petulia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.release.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.release.xcconfig"; sourceTree = "<group>"; };
 		293B0C6E25DA5F5900A4DECB /* Petfinder-Info-Template.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info-Template.plist"; sourceTree = "<group>"; };
 		5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		54DB086F261FCEFD001383F3 /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info.plist"; sourceTree = "<group>"; };
+		685765153B7F6FD1F1900EA7 /* Pods-Petulia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.debug.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.debug.xcconfig"; sourceTree = "<group>"; };
 		69263DE324E58B8B00EABF0E /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		69263DE624E58BF300EABF0E /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		695B34EE24D6CA1500A15D26 /* Petulia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petulia.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +130,7 @@
 		79F93580258B75BF00C9CDCD /* ColoredLabeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredLabeStyle.swift; sourceTree = "<group>"; };
 		79FC94752584D2ED001735C4 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		79FF944B256A562D00149140 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
+		84A762D3FCD33220583E434E /* Pods_Petulia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Petulia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,14 +138,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7926ABDB256CE0AD00AD8D68 /* SDWebImageSwiftUI in Frameworks */,
-				697E7D7024E9535F0039EBF2 /* Lottie in Frameworks */,
+				7926ABDB256CE0AD00AD8D68 /* BuildFile in Frameworks */,
+				697E7D7024E9535F0039EBF2 /* BuildFile in Frameworks */,
+				A6E0CB1F799CD964E1235627 /* Pods_Petulia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10D1DCF4675B0B8B38661535 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84A762D3FCD33220583E434E /* Pods_Petulia.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		36B45FD86184D5B81952CB24 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				685765153B7F6FD1F1900EA7 /* Pods-Petulia.debug.xcconfig */,
+				158BE86E7F99D8C63797420F /* Pods-Petulia.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		69263DE224E58B5A00EABF0E /* Reusable Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +215,8 @@
 			children = (
 				695B34F024D6CA1500A15D26 /* Petulia */,
 				695B34EF24D6CA1500A15D26 /* Products */,
+				36B45FD86184D5B81952CB24 /* Pods */,
+				10D1DCF4675B0B8B38661535 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -377,9 +402,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 695B350224D6CA2000A15D26 /* Build configuration list for PBXNativeTarget "Petulia" */;
 			buildPhases = (
+				7CFAB1C4DA9EFCD0750DD85B /* [CP] Check Pods Manifest.lock */,
 				695B34EA24D6CA1500A15D26 /* Sources */,
 				695B34EB24D6CA1500A15D26 /* Frameworks */,
 				695B34EC24D6CA1500A15D26 /* Resources */,
+				972381C8328041FF5AA78720 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -387,8 +414,8 @@
 			);
 			name = Petulia;
 			packageProductDependencies = (
-				697E7D6F24E9535F0039EBF2 /* Lottie */,
-				7926ABDA256CE0AD00AD8D68 /* SDWebImageSwiftUI */,
+				697E7D6F24E9535F0039EBF2 /* SwiftPackageProductDependency */,
+				7926ABDA256CE0AD00AD8D68 /* SwiftPackageProductDependency */,
 			);
 			productName = Petulia;
 			productReference = 695B34EE24D6CA1500A15D26 /* Petulia.app */;
@@ -419,8 +446,8 @@
 			);
 			mainGroup = 695B34E524D6CA1500A15D26;
 			packageReferences = (
-				697E7D6E24E9535F0039EBF2 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				7926ABD9256CE0AD00AD8D68 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				697E7D6E24E9535F0039EBF2 /* RemoteSwiftPackageReference */,
+				7926ABD9256CE0AD00AD8D68 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 695B34EF24D6CA1500A15D26 /* Products */;
 			projectDirPath = "";
@@ -451,6 +478,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7CFAB1C4DA9EFCD0750DD85B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Petulia-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		972381C8328041FF5AA78720 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Petulia/Pods-Petulia-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Petulia/Pods-Petulia-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Petulia/Pods-Petulia-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		695B34EA24D6CA1500A15D26 /* Sources */ = {
@@ -637,6 +706,7 @@
 		};
 		695B350324D6CA2000A15D26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 685765153B7F6FD1F1900EA7 /* Pods-Petulia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -660,6 +730,7 @@
 		};
 		695B350424D6CA2000A15D26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 158BE86E7F99D8C63797420F /* Pods-Petulia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -705,7 +776,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		697E7D6E24E9535F0039EBF2 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		697E7D6E24E9535F0039EBF2 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
@@ -713,7 +784,7 @@
 				minimumVersion = 3.1.8;
 			};
 		};
-		7926ABD9256CE0AD00AD8D68 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+		7926ABD9256CE0AD00AD8D68 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
@@ -724,14 +795,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		697E7D6F24E9535F0039EBF2 /* Lottie */ = {
+		697E7D6F24E9535F0039EBF2 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 697E7D6E24E9535F0039EBF2 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 697E7D6E24E9535F0039EBF2 /* RemoteSwiftPackageReference */;
 			productName = Lottie;
 		};
-		7926ABDA256CE0AD00AD8D68 /* SDWebImageSwiftUI */ = {
+		7926ABDA256CE0AD00AD8D68 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7926ABD9256CE0AD00AD8D68 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			package = 7926ABD9256CE0AD00AD8D68 /* RemoteSwiftPackageReference */;
 			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
