@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5447E4F8262657A3009EAB80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */; };
+		54A46A2326266D00001033AA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2226266D00001033AA /* LoginView.swift */; };
+		54A46A2B262674F1001033AA /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2A262674F1001033AA /* Defaults.swift */; };
+		54A46A2E262675C7001033AA /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2D262675C7001033AA /* UserDefaults+Extensions.swift */; };
+		54A46A3126267623001033AA /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A3026267623001033AA /* Customer.swift */; };
 		54DB0870261FCEFD001383F3 /* Petfinder-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54DB086F261FCEFD001383F3 /* Petfinder-Info.plist */; };
 		69263DE424E58B8B00EABF0E /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69263DE324E58B8B00EABF0E /* RoundedCorner.swift */; };
 		69263DE724E58BF300EABF0E /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69263DE624E58BF300EABF0E /* View+Extension.swift */; };
@@ -72,6 +76,10 @@
 		158BE86E7F99D8C63797420F /* Pods-Petulia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.release.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.release.xcconfig"; sourceTree = "<group>"; };
 		293B0C6E25DA5F5900A4DECB /* Petfinder-Info-Template.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info-Template.plist"; sourceTree = "<group>"; };
 		5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		54A46A2226266D00001033AA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		54A46A2A262674F1001033AA /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		54A46A2D262675C7001033AA /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
+		54A46A3026267623001033AA /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		54DB086F261FCEFD001383F3 /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info.plist"; sourceTree = "<group>"; };
 		685765153B7F6FD1F1900EA7 /* Pods-Petulia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.debug.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.debug.xcconfig"; sourceTree = "<group>"; };
 		69263DE324E58B8B00EABF0E /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
@@ -164,6 +172,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		54A46A2526266D09001033AA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				54A46A2226266D00001033AA /* LoginView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		69263DE224E58B5A00EABF0E /* Reusable Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +209,7 @@
 				794945AA25825BCA00BF02DE /* Date+Extension.swift */,
 				79B037A725837DE600E2046D /* Animal+Extension.swift */,
 				79AA05BA258DF37F00A126B0 /* UIApplication+Extension.swift */,
+				54A46A2D262675C7001033AA /* UserDefaults+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -205,6 +222,7 @@
 				79CA6E172594808D001E2FCF /* ServerPetTypes.swift */,
 				695B350724D7022E00A15D26 /* PetResponse.swift */,
 				7982A49925711317005334DD /* FavoriteController.swift */,
+				54A46A3026267623001033AA /* Customer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -296,6 +314,7 @@
 				7930A4B72567F76100746ADE /* DetailUI */,
 				69263DE224E58B5A00EABF0E /* Reusable Views */,
 				792346752576154B005E2644 /* Styles */,
+				54A46A2526266D09001033AA /* Authentication */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -337,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				7982A49D25712CA4005334DD /* StorageService.swift */,
+				54A46A2A262674F1001033AA /* Defaults.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -526,19 +546,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				695B350A24D70A0100A15D26 /* PetDataController.swift in Sources */,
+				54A46A3126267623001033AA /* Customer.swift in Sources */,
 				79B037AB258380E600E2046D /* PetRow.swift in Sources */,
 				794945AB25825BCA00BF02DE /* Date+Extension.swift in Sources */,
 				79FF944C256A562D00149140 /* Collection+Extension.swift in Sources */,
+				54A46A2326266D00001033AA /* LoginView.swift in Sources */,
 				7965DDC7257A33F700829328 /* AdoptionFeedbackView.swift in Sources */,
 				69E4432524E8820C00B8B3F1 /* PetDetailViewModel.swift in Sources */,
 				79CA6E182594808D001E2FCF /* ServerPetTypes.swift in Sources */,
 				791F4E432581F9A000C5F457 /* SettingsView.swift in Sources */,
 				7923467725761564005E2644 /* ClearButtonStyle.swift in Sources */,
+				54A46A2E262675C7001033AA /* UserDefaults+Extensions.swift in Sources */,
 				7962EBFF258C97F400322283 /* ThemeManager.swift in Sources */,
 				79F93581258B75BF00C9CDCD /* ColoredLabeStyle.swift in Sources */,
 				791F4E46258217CC00C5F457 /* Color+Extension.swift in Sources */,
 				7930A4B92567F7A200746ADE /* PetDetailView.swift in Sources */,
 				69E4432124E87AC300B8B3F1 /* ListView.swift in Sources */,
+				54A46A2B262674F1001033AA /* Defaults.swift in Sources */,
 				7926ABE1256D430900AD8D68 /* PetType.swift in Sources */,
 				695B350624D6CA5A00A15D26 /* APIManager.swift in Sources */,
 				695B350824D7022E00A15D26 /* PetResponse.swift in Sources */,
