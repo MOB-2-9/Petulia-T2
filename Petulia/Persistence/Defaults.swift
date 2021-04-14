@@ -7,3 +7,21 @@
 //
 
 import Foundation
+import FirebaseAuth
+
+struct Defaults {
+    private enum Keys {
+        static let onboard = "onboard"
+        static let currentUser = "currentUser"
+    }
+    
+    //MARK: Methods
+    
+    ///use after logging out
+    static func removeUser(_ removeFromUserDefaults: Bool = false) {
+        if removeFromUserDefaults {
+            //clear everything in UserDefaults except for onboard
+            UserDefaults.standard.deleteAllKeys(exemptedKeys: [Keys.onboard])
+        }
+    }
+}
