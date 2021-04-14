@@ -33,5 +33,11 @@ enum Keys {
   static var author = "Johandre Delgado"
   static var authorWebsite = "https://www.seadeveloper.com"
   static var authorQuote = "Because caring is loving"
+  
+  //Customer
+  static let currentUser = "currentUser"
+  //Customer properties
+  static let userId = "userId"
+  static let name = "name"
+  static let email = "email"
 }
-
