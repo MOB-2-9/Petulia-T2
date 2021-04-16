@@ -9,7 +9,11 @@
 import SwiftUI
 import Foundation
 
-//MARK: - User Defaults
+enum Constants {
+  static let screenWidth = UIScreen.main.bounds.width
+  static let screenHeight = UIScreen.main.bounds.height
+}
+
 enum Keys {
   // Theme
   static var prefferedAccentColor = "prefferedAccentColor"
