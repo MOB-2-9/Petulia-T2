@@ -10,38 +10,47 @@ import SwiftUI
 
 struct LoginView: View {
   
-  @State private var state: AuthState = .isLogin
-  @State var email: String = ""
-  @State var password: String = ""
-  @State var name: String = ""
+  @ObservedObject var viewModel: AuthenticationViewModel
   
   var body: some View {
-    NavigationView {
-      VStack {
-        AuthFormView(authType: .login)
-      }
-      .padding(.horizontal , 16)
-      .onTapGesture { UIApplication.shared.endEditing(true) }
+    VStack {
+      AuthFormView(authType: viewModel.authType)
+        .frame(width: Constants.screenWidth - 32, height: 120, alignment: .center)
+      loginButton
     }
+    .navigationBarTitle("Log In", displayMode: .inline)
+    .padding(.horizontal , 16)
+    .onTapGesture { UIApplication.shared.endEditing(true) }
+    .alert(with: $viewModel.errorMessage)
   }
 }
-
-//MARK: - UIComponents
-extension LoginView {}
 
 //MARK: Preview
 struct LoginView_Previews: PreviewProvider {
   static var previews: some View {
-    LoginView()
+    LoginView(viewModel: AuthenticationViewModel(authType: .login))
+  }
+}
+
+//MARK: - UIComponents
+extension LoginView {
+  var loginButton: some View {
+    Button(action: loginButtonTapped, label: {
+      Text("Log in")
+        .font(.system(size: 18, weight: .regular, design: .default))
+        .foregroundColor(.white)
+        .padding()
+    })
+    .frame(width: Constants.screenWidth - 32, height: 50, alignment: .center)
+    .background(Color.accentColor)
+    .border(Color.clear, width: 2)
+    .cornerRadius(100)
   }
 }
 
 //MARK: - Methods
-extension LoginView {}
-
-//MARK: - Enum
 extension LoginView {
-  private enum AuthState {
-    case isLogin, isSignUp, isLoginSuccessful, isSignUpSuccessful
+  func loginButtonTapped() {
+    viewModel.isLoginSuccessfully = true
   }
 }
