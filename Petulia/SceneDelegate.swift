@@ -55,7 +55,7 @@ extension SceneDelegate {
     guard let windowScene = scene as? UIWindowScene else { return }
     let window = UIWindow(windowScene: windowScene)
     if Customer.current == nil {
-      window.rootViewController = UIHostingController(rootView: LoginView())
+      window.rootViewController = UIHostingController(rootView: AuthView())
     } else {
       //user exist
       let petDataController = PetDataController()
