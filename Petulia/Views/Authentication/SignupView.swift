@@ -22,6 +22,7 @@ struct SignupView: View {
       .navigationBarTitle("Sign Up", displayMode: .inline)
       .padding(.horizontal , 16)
       .onTapGesture { UIApplication.shared.endEditing(true) }
+      .alert(with: $viewModel.errorMessage)
     }
   }
 }
