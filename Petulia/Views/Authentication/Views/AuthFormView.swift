@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import SwiftUI
 
 struct AuthFormView: View {
@@ -41,11 +40,7 @@ struct AuthFormView_Previews: PreviewProvider {
 }
 
 //MARK: - Enums
-extension AuthFormView {
-  enum AuthType {
-    case login, signup
-  }
-}
+extension AuthFormView {}
 
 extension AuthFormView {
   var loginView: some View {
