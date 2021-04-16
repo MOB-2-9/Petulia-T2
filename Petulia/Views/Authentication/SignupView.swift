@@ -53,7 +53,13 @@ extension SignupView {
 //MARK: - Methods
 extension SignupView {
   func signupButtonTapped() {
-    viewModel.isSignupSuccessfully = true
+    CustomerService.createCustomer(name: viewModel.name, email: viewModel.email, password: viewModel.password) { (alertError) in
+      if let alertError = alertError {
+        self.viewModel.handleAlertError(alertError: alertError)
+        return
+      }
+      self.goToHomePage()
+    }
   }
   
   func goToHomePage() {
