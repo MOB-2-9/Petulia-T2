@@ -19,7 +19,7 @@ struct Customer: Codable {
   var asDictionary: [String: Any] {
     get {
       let userDic: [String: Any] = [
-        Keys.userId: userId,
+        Keys.userId: userId!,
         Keys.name: name,
         Keys.email: email,
       ]
@@ -43,6 +43,13 @@ struct Customer: Codable {
   }
   
   //MARK: Initializers
+  
+  ///initializer for signing up a Customer
+  init(documentId: String, name: String, email: String) {
+    self.userId = documentId
+    self.name = name
+    self.email = email
+  }
   
   /// Initializer for loading user from a Firebase document
   init?(document: DocumentSnapshot) {
