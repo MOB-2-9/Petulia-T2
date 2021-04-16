@@ -13,7 +13,8 @@ struct AuthView: View {
   private let screenWidth = UIScreen.main.bounds.width
   private let screenHeight = UIScreen.main.bounds.height
   
-  @State private var state: AuthState = .isLogin
+  @State var isLogin = false
+  @State var isSignup = false
   @State var email: String = ""
   @State var password: String = ""
   @State var name: String = ""
@@ -24,9 +25,17 @@ struct AuthView: View {
         headingImage
         headingText
         Spacer()
-        loginButton
-        signupButton
+        VStack(spacing: 24) {
+          loginButton
+          signupButton
+        }
         Spacer()
+        NavigationLink(destination: LoginView(), isActive: $isLogin, label: {
+          EmptyView()
+        })
+        NavigationLink(destination: SignupView(), isActive: $isSignup, label: {
+          EmptyView()
+        })
       }
       .padding(.horizontal , 16)
       .onTapGesture { UIApplication.shared.endEditing(true) }
@@ -76,11 +85,11 @@ extension AuthView {
 //MARK: - Methods
 extension AuthView {
   func loginButtonTapped() {
-    
+    isLogin = true
   }
   
   func signupButtonTapped() {
-    
+    isSignup = true
   }
 }
 
