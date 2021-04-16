@@ -15,12 +15,26 @@ enum AuthType {
 class AuthenticationViewModel: ObservableObject {
   
   let authType: AuthType
+  @Published var errorMessage: AlertMessage?
   @Published var name: String = ""
   @Published var email: String = ""
   @Published var password: String = ""
-  
+  @Published var isLoginSuccessfully = false
+  @Published var isSignupSuccessfully = false
   
   init(authType: AuthType) {
     self.authType = authType
   }
+}
+
+//MARK: - Helpers
+extension AuthenticationViewModel {
+    func handleError(title: String, message: String) {
+        let alertError = AlertError(title: title, message: message)
+        errorMessage = AlertMessage.alertError(alertError: alertError)
+    }
+    
+    func handleAlertError(alertError: AlertError) {
+        errorMessage = AlertMessage.alertError(alertError: alertError)
+    }
 }
