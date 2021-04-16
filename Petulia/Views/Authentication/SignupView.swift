@@ -10,16 +10,16 @@ import SwiftUI
 
 struct SignupView: View {
   
-  @State private var state: AuthState = .isLogin
-  @State var email: String = ""
-  @State var password: String = ""
-  @State var name: String = ""
+  @ObservedObject var viewModel: AuthenticationViewModel
   
   var body: some View {
     NavigationView {
       VStack {
         AuthFormView(authType: .signup)
+          .frame(width: Constants.screenWidth - 32, height: 180, alignment: .center)
+        signupButton
       }
+      .navigationBarTitle("Sign Up", displayMode: .inline)
       .padding(.horizontal , 16)
       .onTapGesture { UIApplication.shared.endEditing(true) }
     }
@@ -29,9 +29,43 @@ struct SignupView: View {
 //MARK: Preview
 struct SignupView_Previews: PreviewProvider {
   static var previews: some View {
-    SignupView()
+    SignupView(viewModel: AuthenticationViewModel(authType: .signup))
+  }
+}
+
+//MARK: - UIComponents
+extension SignupView {
+  var signupButton: some View {
+    Button(action: signupButtonTapped, label: {
+      Text("Sign up")
+        .font(.system(size: 18, weight: .regular, design: .default))
+        .foregroundColor(.white)
+        .padding()
+    })
+    .frame(width: Constants.screenWidth - 32, height: 50, alignment: .center)
+    .background(Color.accentColor)
+    .border(Color.clear, width: 2)
+    .cornerRadius(100)
   }
 }
 
 //MARK: - Methods
-extension SignupView {}
+extension SignupView {
+  func signupButtonTapped() {
+    viewModel.isSignupSuccessfully = true
+  }
+  
+  func goToHomePage() {
+    withAnimation {
+      let petDataController = PetDataController()
+      let favoriteController = FavoriteController()
+      let themeManager = ThemeManager()
+      let rootView = HomeView()
+        .environmentObject(petDataController)
+        .environmentObject(favoriteController)
+        .environmentObject(themeManager)
+      let rootVC = UIHostingController(rootView: rootView)
+      AppService.initRootView(rootController: rootVC)
+    }
+  }
+}
