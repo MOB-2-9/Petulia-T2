@@ -18,7 +18,7 @@ struct LoginView: View {
   var body: some View {
     NavigationView {
       VStack {
-        AuthFormView(authType: .signup)
+        AuthFormView(authType: .login)
       }
       .padding(.horizontal , 16)
       .onTapGesture { UIApplication.shared.endEditing(true) }

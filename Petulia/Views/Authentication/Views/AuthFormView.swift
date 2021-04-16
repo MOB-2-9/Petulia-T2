@@ -12,7 +12,7 @@ import SwiftUI
 
 struct AuthFormView: View {
   
-  @State var authType: AuthType = .login
+  let authType: AuthType
   @State var email: String = ""
   @State var password: String = ""
   @State var name: String = ""
@@ -22,7 +22,7 @@ struct AuthFormView: View {
   }
   
   var body: some View {
-    ZStack{
+    VStack{
       switch authType {
       case .login:
         loginView
@@ -30,6 +30,13 @@ struct AuthFormView: View {
         signUpView
       }
     }
+  }
+}
+
+//MARK: Preview
+struct AuthFormView_Previews: PreviewProvider {
+  static var previews: some View {
+    AuthFormView(authType: .signup)
   }
 }
 
@@ -58,18 +65,18 @@ extension AuthFormView {
   
   var nameField: some View {
     HStack{
-    Image(systemName: "person.fill").foregroundColor(.gray)
-    TextField("name", text: $name)
-      .autocapitalization(.words)
-      .foregroundColor(.accentColor)
-      .padding(.horizontal , 15)
-      .frame(height: 40.0)
+      Image(systemName: "person.fill").foregroundColor(.gray)
+      TextField("name", text: $name)
+        .autocapitalization(.words)
+        .foregroundColor(.accentColor)
+        .frame(height: 40.0)
     }
-      .background(Color(red: 239/255, green: 243/255, blue: 244/255))
-      .overlay(
-        RoundedRectangle(cornerRadius: 5)
-          .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-      )
+    .padding(.horizontal , 15)
+    .background(Color(red: 239/255, green: 243/255, blue: 244/255))
+    .overlay(
+      RoundedRectangle(cornerRadius: 5)
+        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+    )
   }
   
   var emailField: some View {
