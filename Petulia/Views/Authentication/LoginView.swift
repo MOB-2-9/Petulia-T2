@@ -18,52 +18,21 @@ struct LoginView: View {
   var body: some View {
     NavigationView {
       VStack {
-        switch state {
-        case .isLogin:
-          loginView
-        case .isSignUp:
-          signUpView
-        default:
-          EmptyView()
-        }
+        AuthFormView(authType: .signup)
       }
+      .padding(.horizontal , 16)
       .onTapGesture { UIApplication.shared.endEditing(true) }
     }
   }
 }
 
 //MARK: - UIComponents
-extension LoginView {
-  var nameField: some View {
-    TextField("name", text: $name)
-      .autocapitalization(.words)
-      .padding()
-  }
-  
-  var emailField: some View {
-    TextField("email", text: $email)
-      .keyboardType(.emailAddress)
-      .padding()
-  }
-  
-  var passwordField: some View {
-    SecureField("password", text: $password)
-      .padding()
-  }
-  
-  var loginView: some View {
-    VStack(spacing: 16) {
-      emailField
-      passwordField
-    }
-  }
-  
-  var signUpView: some View {
-    VStack(spacing: 16) {
-      nameField
-      emailField
-      passwordField
-    }
+extension LoginView {}
+
+//MARK: Preview
+struct LoginView_Previews: PreviewProvider {
+  static var previews: some View {
+    LoginView()
   }
 }
 
