@@ -51,6 +51,27 @@ extension LoginView {
 //MARK: - Methods
 extension LoginView {
   func loginButtonTapped() {
-    viewModel.isLoginSuccessfully = true
+//    viewModel.isLoginSuccessfully = true
+    CustomerService.signIn(email: viewModel.email, password: viewModel.password) { (alertError) in
+      if let alertError = alertError {
+        self.viewModel.handleAlertError(alertError: alertError)
+        return
+      }
+      self.goToHomePage()
+    }
+  }
+  
+  func goToHomePage() {
+    withAnimation {
+      let petDataController = PetDataController()
+      let favoriteController = FavoriteController()
+      let themeManager = ThemeManager()
+      let rootView = HomeView()
+        .environmentObject(petDataController)
+        .environmentObject(favoriteController)
+        .environmentObject(themeManager)
+      let rootVC = UIHostingController(rootView: rootView)
+      AppService.initRootView(rootController: rootVC)
+    }
   }
 }
