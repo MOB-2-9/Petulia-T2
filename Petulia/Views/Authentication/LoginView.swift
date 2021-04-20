@@ -18,7 +18,7 @@ struct LoginView: View {
         .frame(width: Constants.screenWidth - 32, height: 120, alignment: .center)
       loginButton
     }
-    .navigationBarTitle("Log In", displayMode: .inline)
+    .navigationBarTitle("Log In", displayMode: .large)
     .padding(.horizontal, 16)
     .onTapGesture { UIApplication.shared.endEditing(true) }
     .alert(with: $viewModel.errorMessage)

@@ -13,17 +13,15 @@ struct SignupView: View {
   @ObservedObject var viewModel: AuthenticationViewModel
   
   var body: some View {
-    NavigationView {
-      VStack {
-        AuthFormView(authType: .signup, name: $viewModel.name, email: $viewModel.email, password: $viewModel.password)
-          .frame(width: Constants.screenWidth - 32, height: 180, alignment: .center)
-        signupButton
-      }
-      .navigationBarTitle("Sign Up", displayMode: .inline)
-      .padding(.horizontal, 16)
-      .onTapGesture { UIApplication.shared.endEditing(true) }
-      .alert(with: $viewModel.errorMessage)
+    VStack {
+      AuthFormView(authType: .signup, name: $viewModel.name, email: $viewModel.email, password: $viewModel.password)
+        .frame(width: Constants.screenWidth - 32, height: 180, alignment: .center)
+      signupButton
     }
+    .navigationBarTitle("Sign Up", displayMode: .large)
+    .padding(.horizontal, 16)
+    .onTapGesture { UIApplication.shared.endEditing(true) }
+    .alert(with: $viewModel.errorMessage)
   }
 }
 
