@@ -48,6 +48,21 @@ struct CustomerService {
     }
   }
   
+  ///Fetch a user from database
+  static func fetchUser(userId: String, completion: @escaping CustomerWithAlertErrorCompletion) {
+    db.collection(CollectionKeys.users)
+      .document(userId)
+      .getDocument { (snapshot, error) in
+        if let error = error {
+          return completion(nil, AlertError(title: "Error fetching user data", message: error.localizedDescription))
+        }
+        guard let snapshot = snapshot,
+              let customer = Customer(document: snapshot)
+        else { return }
+        completion(customer, nil)
+      }
+  }
+  
   private static func createUserInDatabase(name: String, email: String, completion: @escaping CustomerWithAlertErrorCompletion) {
     let userDoc = db.collection(CollectionKeys.users).document()
     let customer = Customer(documentId: userDoc.documentID, name: name, email: email)
