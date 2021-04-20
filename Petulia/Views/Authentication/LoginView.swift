@@ -14,12 +14,12 @@ struct LoginView: View {
   
   var body: some View {
     VStack {
-      AuthFormView(authType: .signup, name: $viewModel.name, email: $viewModel.email, password: $viewModel.password)
+      AuthFormView(authType: .login, name: $viewModel.name, email: $viewModel.email, password: $viewModel.password)
         .frame(width: Constants.screenWidth - 32, height: 120, alignment: .center)
       loginButton
     }
     .navigationBarTitle("Log In", displayMode: .inline)
-    .padding(.horizontal , 16)
+    .padding(.horizontal, 16)
     .onTapGesture { UIApplication.shared.endEditing(true) }
     .alert(with: $viewModel.errorMessage)
   }
