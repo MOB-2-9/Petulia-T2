@@ -45,8 +45,8 @@ struct Customer: Codable {
   //MARK: Initializers
   
   ///initializer for signing up a Customer
-  init(documentId: String, name: String, email: String) {
-    self.userId = documentId
+  init(userId: String, name: String, email: String) {
+    self.userId = userId
     self.name = name
     self.email = email
   }
