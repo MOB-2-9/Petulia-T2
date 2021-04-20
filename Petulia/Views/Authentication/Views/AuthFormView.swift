@@ -12,12 +12,15 @@ import SwiftUI
 struct AuthFormView: View {
   
   let authType: AuthType
-  @State var email: String = ""
-  @State var password: String = ""
-  @State var name: String = ""
+  @Binding var name: String
+  @Binding var email: String
+  @Binding var password: String
   
-  init(authType: AuthType) {
+  init(authType: AuthType, name: Binding<String>, email: Binding<String>, password: Binding<String>) {
     self.authType = authType
+    self._name = name
+    self._email = email
+    self._password = password
   }
   
   var body: some View {
@@ -29,13 +32,6 @@ struct AuthFormView: View {
         signUpView
       }
     }
-  }
-}
-
-//MARK: Preview
-struct AuthFormView_Previews: PreviewProvider {
-  static var previews: some View {
-    AuthFormView(authType: .signup)
   }
 }
 
