@@ -9,7 +9,11 @@
 import SwiftUI
 import Foundation
 
-//MARK: - User Defaults
+enum Constants {
+  static let screenWidth = UIScreen.main.bounds.width
+  static let screenHeight = UIScreen.main.bounds.height
+}
+
 enum Keys {
   // Theme
   static var prefferedAccentColor = "prefferedAccentColor"
@@ -33,5 +37,11 @@ enum Keys {
   static var author = "Johandre Delgado"
   static var authorWebsite = "https://www.seadeveloper.com"
   static var authorQuote = "Because caring is loving"
+  
+  //Customer
+  static let currentUser = "currentUser"
+  //Customer properties
+  static let userId = "userId"
+  static let name = "name"
+  static let email = "email"
 }
-

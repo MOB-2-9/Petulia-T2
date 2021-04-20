@@ -17,4 +17,13 @@ extension UIApplication {
   static var appVersionNumber: String? {
     Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
   }
+  
+  /// dismiss keyboard for search bar
+  /// Source: https://stackoverflow.com/questions/56490963/how-to-display-a-search-bar-with-swiftui
+  func endEditing(_ force: Bool) {
+      self.windows
+          .filter{$0.isKeyWindow}
+          .first?
+          .endEditing(force)
+  }
 }

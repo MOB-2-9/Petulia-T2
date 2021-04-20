@@ -17,4 +17,8 @@ extension View {
     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
   }
   
+  ///easily create an alert
+  func alert(with message: Binding<AlertMessage?>) -> some View {
+      self.alert(item: message) { $0.show() }
+  }
 }
