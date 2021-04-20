@@ -7,12 +7,13 @@
 //
 
 import SwiftUI
+import Combine
 
 struct FilterBarView: View {
   @Binding var postcode: String
   @Binding var typing: Bool
   var action: (() -> Void)?
-
+  
   var body: some View {
     HStack {
       Spacer()
@@ -30,11 +31,16 @@ struct FilterBarView: View {
                   })
           .font(.headline)
           .multilineTextAlignment(.center)
-          .keyboardType(.numbersAndPunctuation)
+          .keyboardType(.numberPad)
           .disableAutocorrection(true)
           .frame(maxWidth: 100)
           .padding(.vertical, 8)
-
+          .onReceive(Just(self.postcode)) { inputValue in  //For every input after the postal code is 5 digits long, remove last to keep the data useable
+            if inputValue.count > 5 {
+              self.postcode.removeLast()
+            }
+          }
+        
         if !postcode.isEmpty {
           Image(systemName: "xmark.circle.fill")
             .foregroundColor(.gray)
@@ -43,13 +49,13 @@ struct FilterBarView: View {
               action?() //requestWebData()
             }
         }
-
+        
       }
       .padding(.horizontal)
       .background(Color(UIColor.systemGray6))
       .cornerRadius(10)
       .animation(.default)
-
+      
       Spacer()
     }
   }
