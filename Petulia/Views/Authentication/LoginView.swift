@@ -51,7 +51,6 @@ extension LoginView {
 //MARK: - Methods
 extension LoginView {
   func loginButtonTapped() {
-//    viewModel.isLoginSuccessfully = true
     CustomerService.signIn(email: viewModel.email, password: viewModel.password) { (alertError) in
       if let alertError = alertError {
         self.viewModel.handleAlertError(alertError: alertError)
