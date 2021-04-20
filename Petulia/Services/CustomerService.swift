@@ -97,6 +97,7 @@ struct CustomerService {
     }
   }
   
+  ///sign user out before deleting from the database and locally
   static func deleteCurrentUser(completion: @escaping (_ error: String?) -> Void) {
     guard let user = auth.currentUser
     else { return completion("No user found") }
@@ -116,6 +117,7 @@ struct CustomerService {
           if let error = error {
             return completion(error.localizedDescription)
           }
+          Defaults.removeUser(true)
           completion(nil)
         }
       }
