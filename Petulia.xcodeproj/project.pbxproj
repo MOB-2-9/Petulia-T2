@@ -70,7 +70,7 @@
 
 /* Begin PBXFileReference section */
 		158BE86E7F99D8C63797420F /* Pods-Petulia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.release.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.release.xcconfig"; sourceTree = "<group>"; };
-		293B0C6E25DA5F5900A4DECB /* Petfinder-Info-Template.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info-Template.plist"; sourceTree = "<group>"; };
+		293B0C6E25DA5F5900A4DECB /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info.plist"; sourceTree = "<group>"; };
 		5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		54DB086F261FCEFD001383F3 /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info.plist"; sourceTree = "<group>"; };
 		685765153B7F6FD1F1900EA7 /* Pods-Petulia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.debug.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.debug.xcconfig"; sourceTree = "<group>"; };
@@ -347,7 +347,7 @@
 				695B34F124D6CA1500A15D26 /* AppDelegate.swift */,
 				695B34F324D6CA1500A15D26 /* SceneDelegate.swift */,
 				695B34FF24D6CA2000A15D26 /* Info.plist */,
-				293B0C6E25DA5F5900A4DECB /* Petfinder-Info-Template.plist */,
+				293B0C6E25DA5F5900A4DECB /* Petfinder-Info.plist */,
 				54DB086F261FCEFD001383F3 /* Petfinder-Info.plist */,
 				5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */,
 			);
@@ -712,7 +712,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Petulia/Preview Content\"";
-				DEVELOPMENT_TEAM = 9NY68F4K3P;
+				DEVELOPMENT_TEAM = HER732L49Q;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Petulia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -736,7 +736,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Petulia/Preview Content\"";
-				DEVELOPMENT_TEAM = 9NY68F4K3P;
+				DEVELOPMENT_TEAM = HER732L49Q;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Petulia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
