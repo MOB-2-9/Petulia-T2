@@ -48,6 +48,25 @@ struct CustomerService {
     }
   }
   
+  ///sign user in and store them locally
+  static func signIn(email: String, password: String, completion: @escaping AlertErrorCompletion) {
+    auth.signIn(withEmail: email, password: password) { (result, error) in
+      if let error = error {
+        return completion(AlertError(title: "Error signing in", message: error.localizedDescription))
+      }
+      guard let result = result else { return }
+      let userId = result.user.uid
+      fetchUser(userId: userId) { (customer, alertError) in
+        if let alertError = alertError {
+          return completion(alertError)
+        }
+        guard let customer = customer else { return }
+        Customer.setCurrent(customer, writeToUserDefaults: true)
+        completion(nil)
+      }
+    }
+  }
+  
   ///Fetch a user from database
   static func fetchUser(userId: String, completion: @escaping CustomerWithAlertErrorCompletion) {
     db.collection(CollectionKeys.users)
