@@ -24,6 +24,7 @@ struct CustomerService {
       if let error = error {
         return completion(AlertError(title: "Error authenticating user", message: error.localizedDescription))
       }
+      guard let result = result else { return }
       //2. Update FirebaseUser's displayName
       updateUserDisplayName(name: name) { (alertError) in
         if let alertError = alertError {
@@ -35,12 +36,12 @@ struct CustomerService {
           return completion(alertError)
         }
         //3. Save customer to Firestore
-        createUserInDatabase(name: name, email: email) { (customer, alertError) in
+        let customer = Customer(userId: result.user.uid, name: name, email: email)
+        createUserInDatabase(customer: customer) { (alertError) in
           if let alertError = alertError {
             return completion(alertError)
           }
           //4. Save customer to UserDefaults
-          guard let customer = customer else { return }
           Customer.setCurrent(customer, writeToUserDefaults: true)
           completion(nil)
         }
@@ -82,16 +83,15 @@ struct CustomerService {
       }
   }
   
-  private static func createUserInDatabase(name: String, email: String, completion: @escaping CustomerWithAlertErrorCompletion) {
-    let userDoc = db.collection(CollectionKeys.users).document()
-    let customer = Customer(documentId: userDoc.documentID, name: name, email: email)
+  ///create a user data in Firestore's Users collection
+  private static func createUserInDatabase(customer: Customer, completion: @escaping AlertErrorCompletion) {
     db.collection(CollectionKeys.users)
-      .document(userDoc.documentID)
+      .document(customer.userId)
       .setData(customer.asDictionary, merge: true) { (error) in
         if let error = error {
-          return completion(nil, AlertError(title: "Error creating user in database", message: error.localizedDescription))
+          return completion(AlertError(title: "Error creating user in database", message: error.localizedDescription))
         }
-        completion(customer, nil)
+        completion(nil)
       }
   }
   
@@ -105,18 +105,6 @@ struct CustomerService {
       }
       completion(nil)
     })
-  }
-  
-  ///register and create a user
-  fileprivate static func createUserInDatabase(customer: Customer, completion: @escaping AlertErrorCompletion) {
-    db.collection(CollectionKeys.users)
-      .document(customer.userId)
-      .setData(customer.asDictionary) { (error) in
-        if let error = error {
-          return completion(AlertError(title: "Error saving user to database", message: error.localizedDescription))
-        }
-        completion(nil)
-      }
   }
   
   static func signOut(completion: @escaping (_ error: String?) -> Void) {
