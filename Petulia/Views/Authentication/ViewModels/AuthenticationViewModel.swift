@@ -19,8 +19,6 @@ class AuthenticationViewModel: ObservableObject {
   @Published var name: String = ""
   @Published var email: String = ""
   @Published var password: String = ""
-  @Published var isLoginSuccessfully = false
-  @Published var isSignupSuccessfully = false
   
   init(authType: AuthType) {
     self.authType = authType
