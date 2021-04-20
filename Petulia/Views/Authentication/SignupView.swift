@@ -15,7 +15,7 @@ struct SignupView: View {
   var body: some View {
     NavigationView {
       VStack {
-        AuthFormView(authType: .signup)
+        AuthFormView(authType: .signup, name: $viewModel.name, email: $viewModel.email, password: $viewModel.password)
           .frame(width: Constants.screenWidth - 32, height: 180, alignment: .center)
         signupButton
       }
