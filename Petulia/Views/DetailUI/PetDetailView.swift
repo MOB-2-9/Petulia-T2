@@ -23,6 +23,9 @@ struct PetDetailView: View {
   @State var result: Result<MFMailComposeResult, Error>? = nil
   @State private var showingMailView = false
   
+  @State private var showingPhoneAlert = false
+  @State private var showingEmailAlert = false
+  
   var body: some View {
     ScrollView(.vertical, showsIndicators: false) {
       VStack {
@@ -42,6 +45,9 @@ struct PetDetailView: View {
           descriptionView()
             .padding()
           Spacer()
+          
+          contactInfoView()
+            .padding(.horizontal, 100)
         }
       }
     }
@@ -195,6 +201,48 @@ private extension PetDetailView {
       
     }
   }
+  
+  func contactInfoView() -> some View {
+    HStack {
+      Button {
+        print("call tapped")
+        guard let phoneNumber = viewModel.contact.phone else {
+          showingPhoneAlert = true
+          return
+        }
+        guard let url = phoneNumber.formatPhoneNumberToURL() else { return }
+        UIApplication.shared.open(url)
+      } label: {
+        Image(systemName: "phone.fill")
+      }
+      .alert(isPresented: $showingPhoneAlert) { () -> Alert in
+        Alert(title: Text("No Number"), message: Text("This pet has no number"), dismissButton: .default(Text("Dismiss")))
+      }
+      
+      Spacer()
+      
+      Button {
+        print("email tapped")
+        guard let email = viewModel.contact.email else {
+          showingEmailAlert = true
+          return
+        }
+        self.showingMailView.toggle()
+      } label: {
+        Image(systemName: "envelope.fill")
+      }
+      .disabled(!MFMailComposeViewController.canSendMail())
+      .sheet(isPresented: $showingMailView) {
+        MailView(result: self.$result, recipient: viewModel.contact.email!)
+      }
+      .alert(isPresented: $showingEmailAlert) { () -> Alert in
+        Alert(title: Text("No Email"), message: Text("This pet has no email"), dismissButton: .default(Text("Dismiss")))
+      }
+      
+      
+    }
+  }
+
   
 }
 
