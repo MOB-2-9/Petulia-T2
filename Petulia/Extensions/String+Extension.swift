@@ -33,5 +33,13 @@ extension String {
     }
     return newString
   }
+  
+  func formatPhoneNumberToURL() -> URL? {
+    var result = self.filter("0123456789".contains)
+    let phone = "tel://"
+    result.insert("-", at: result.index(startIndex, offsetBy: 3))
+    result.insert("-", at: result.index(startIndex, offsetBy: 6))
+    return URL(string: phone + result)
+  }
 }
 

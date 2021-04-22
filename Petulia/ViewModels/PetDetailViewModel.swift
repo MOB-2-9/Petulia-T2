@@ -27,6 +27,7 @@ struct PetDetailViewModel: Identifiable, Hashable, Codable {
   var distance: String
   var shelterId: String
   var postedDate: String
+  var contact: Contact
   
   init(model: Animal) {
     self.id = model.id
@@ -46,6 +47,7 @@ struct PetDetailViewModel: Identifiable, Hashable, Codable {
     self.shelterId = model.organizationID ?? ""
     let date = Date.date(dateString: model.publishedAt!)
     self.postedDate = date?.timeAgo() ?? "Some time ago"
+    self.contact = model.contact ?? Contact(email: nil, phone: nil)
   }
 }
 
@@ -103,3 +105,9 @@ struct Characteristic: Identifiable {
   var title: String
   var label: String
 }
+
+//MARK: Contact
+//struct Contact: Identifiable {
+//  var phone: String?
+//  var email: String?
+//}
