@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BC56AAE262FB17B00F9CAA8 /* Petfinder-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BC56AAD262FB17B00F9CAA8 /* Petfinder-Info.plist */; };
 		5447E4F8262657A3009EAB80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */; };
 		54A46A2326266D00001033AA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2226266D00001033AA /* LoginView.swift */; };
 		54A46A2B262674F1001033AA /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2A262674F1001033AA /* Defaults.swift */; };
@@ -20,7 +21,6 @@
 		54AB30E426291CD000A801F5 /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB30E326291CD000A801F5 /* AppService.swift */; };
 		54AB30EB2629201D00A801F5 /* CustomerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB30EA2629201D00A801F5 /* CustomerService.swift */; };
 		54AB30EE2629208600A801F5 /* CollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB30ED2629208600A801F5 /* CollectionKeys.swift */; };
-		54DB0870261FCEFD001383F3 /* Petfinder-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54DB086F261FCEFD001383F3 /* Petfinder-Info.plist */; };
 		69263DE424E58B8B00EABF0E /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69263DE324E58B8B00EABF0E /* RoundedCorner.swift */; };
 		69263DE724E58BF300EABF0E /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69263DE624E58BF300EABF0E /* View+Extension.swift */; };
 		695B34F224D6CA1500A15D26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695B34F124D6CA1500A15D26 /* AppDelegate.swift */; };
@@ -82,7 +82,7 @@
 
 /* Begin PBXFileReference section */
 		158BE86E7F99D8C63797420F /* Pods-Petulia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.release.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.release.xcconfig"; sourceTree = "<group>"; };
-		293B0C6E25DA5F5900A4DECB /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info.plist"; sourceTree = "<group>"; };
+		1BC56AAD262FB17B00F9CAA8 /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info.plist"; sourceTree = "<group>"; };
 		5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		54A46A2226266D00001033AA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		54A46A2A262674F1001033AA /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -96,7 +96,6 @@
 		54AB30E326291CD000A801F5 /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
 		54AB30EA2629201D00A801F5 /* CustomerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerService.swift; sourceTree = "<group>"; };
 		54AB30ED2629208600A801F5 /* CollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionKeys.swift; sourceTree = "<group>"; };
-		54DB086F261FCEFD001383F3 /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info.plist"; sourceTree = "<group>"; };
 		685765153B7F6FD1F1900EA7 /* Pods-Petulia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.debug.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.debug.xcconfig"; sourceTree = "<group>"; };
 		69263DE324E58B8B00EABF0E /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		69263DE624E58BF300EABF0E /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
@@ -415,9 +414,8 @@
 				695B34F124D6CA1500A15D26 /* AppDelegate.swift */,
 				695B34F324D6CA1500A15D26 /* SceneDelegate.swift */,
 				695B34FF24D6CA2000A15D26 /* Info.plist */,
-				293B0C6E25DA5F5900A4DECB /* Petfinder-Info.plist */,
-				54DB086F261FCEFD001383F3 /* Petfinder-Info.plist */,
 				5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */,
+				1BC56AAD262FB17B00F9CAA8 /* Petfinder-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -530,13 +528,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54DB0870261FCEFD001383F3 /* Petfinder-Info.plist in Resources */,
 				697E7D6C24E9528C0039EBF2 /* confetti.json in Resources */,
 				695B34FE24D6CA2000A15D26 /* LaunchScreen.storyboard in Resources */,
 				697E7D6D24E9528C0039EBF2 /* thanks.json in Resources */,
 				794E2CCA25AAF8CB00234FDA /* paws-preloader.json in Resources */,
 				695B34FB24D6CA2000A15D26 /* Preview Assets.xcassets in Resources */,
 				794E2CCB25AAF8CB00234FDA /* cat-preloader.json in Resources */,
+				1BC56AAE262FB17B00F9CAA8 /* Petfinder-Info.plist in Resources */,
 				794E2CD125AAFE4100234FDA /* dots-preloader.json in Resources */,
 				5447E4F8262657A3009EAB80 /* GoogleService-Info.plist in Resources */,
 				695B34F824D6CA2000A15D26 /* Assets.xcassets in Resources */,
