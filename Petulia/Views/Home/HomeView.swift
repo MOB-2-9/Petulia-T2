@@ -53,6 +53,7 @@ struct HomeView: View {
     .preferredColorScheme(isDark ? .dark : .light)
   }
 }
+//You gotta do what you gotta do
 
 private extension HomeView {
   //MARK: - Methods
