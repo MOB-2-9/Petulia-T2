@@ -28,6 +28,32 @@ struct PetDetailViewModel: Identifiable, Hashable, Codable {
   var shelterId: String
   var postedDate: String
   
+  var asDictionary: [String: Any] {
+    get {
+      var dic: [String: Any] = [
+        AnimalKeys.id: id,
+        AnimalKeys.name: name,
+        AnimalKeys.species: species,
+        AnimalKeys.breed: breed,
+        AnimalKeys.size: size,
+        AnimalKeys.age: age,
+        AnimalKeys.tags: tags,
+        AnimalKeys.attributes: attributes,
+        AnimalKeys.description: description,
+        AnimalKeys.photos: photos.map{ $0.asDictionary },
+        AnimalKeys.gender: gender,
+        AnimalKeys.status: status,
+        AnimalKeys.distance: distance,
+        AnimalKeys.shelterId: shelterId,
+        AnimalKeys.postedDate: postedDate,
+      ]
+      if let urlString = urlString {
+        dic[AnimalKeys.urlString] = urlString
+      }
+      return dic
+    }
+  }
+  
   init(model: Animal) {
     self.id = model.id
     self.name = model.name ?? "Pet Name"
