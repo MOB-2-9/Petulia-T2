@@ -161,3 +161,18 @@ struct CustomerService {
         completion(nil)
       }
   }
+  
+  func removeUserFavoritePets(petId: String, completion: @escaping AlertErrorCompletion) {
+    guard let userId = Customer.current?.userId else { return }
+    db.collection(CollectionKeys.users)
+      .document(userId)
+      .collection(CollectionKeys.Users.favoritePets)
+      .document(petId)
+      .delete { (error) in
+        if let error = error {
+          return completion(AlertError(title: "Error deleting pet", message: error.localizedDescription))
+        }
+        completion(nil)
+      }
+  }
+}
