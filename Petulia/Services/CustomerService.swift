@@ -11,6 +11,7 @@ import FirebaseAuth.FIRUser
 //MARK: - Type Aliases
 typealias AlertErrorCompletion = (_ error: AlertError?) -> Void
 typealias CustomerWithAlertErrorCompletion = (_ space: Customer?, _ error: AlertError?) -> Void
+typealias FavoritesWithAlertErrorCompletion = (_ animals: [Animal]?, _ error: AlertError?) -> Void
 
 struct CustomerService {
   
@@ -146,3 +147,17 @@ struct CustomerService {
     }
   }
 }
+  
+  func addUserFavoritePets(pet: PetDetailViewModel, completion: @escaping AlertErrorCompletion) {
+    guard let userId = Customer.current?.userId else { return }
+    db.collection(CollectionKeys.users)
+      .document(userId)
+      .collection(CollectionKeys.Users.favoritePets)
+      .document("\(pet.id)")
+      .setData(pet.asDictionary, merge: true) { (error) in
+        if let error = error {
+          return completion(AlertError(title: "Error saving pet", message: error.localizedDescription))
+        }
+        completion(nil)
+      }
+  }
