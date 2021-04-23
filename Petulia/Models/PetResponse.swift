@@ -77,6 +77,25 @@ struct LinkString: Codable {
 struct Photo: Codable {
   let small, medium, large, full: String?
   
+  var asDictionary: [String: Any] {
+    get {
+      var dic: [String: Any] = [:]
+      if let small = small {
+        dic[AnimalKeys.Photos.smallPhoto] = small
+      }
+      if let medium = medium {
+        dic[AnimalKeys.Photos.mediumPhoto] = medium
+      }
+      if let large = large {
+        dic[AnimalKeys.Photos.largePhoto] = large
+      }
+      if let full = full {
+        dic[AnimalKeys.Photos.fullPhoto] = full
+      }
+      return dic
+    }
+  }
+  
   func imagePath(for size: Size) -> String {
     let noUrlString = "no-image"
     switch size {
