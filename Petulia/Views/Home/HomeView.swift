@@ -18,41 +18,127 @@ struct HomeView: View {
   
   @State private var typing = false
   @State private var showSettingsSheet = false
+  @State var showMenu = false
   
   private var filteredPets: [PetDetailViewModel] {
     return petDataController.allPets
   }
 
   var body: some View {
-    NavigationView {
-      ZStack (alignment: .bottom) {
-      VStack {
-        ScrollView(.vertical, showsIndicators: false) {
-          VStack {
-            filterView().padding(.top)
-            petTypeScrollView()
-            recentPetSectionView()
-            favoritesSectionView()
+      
+      let drag = DragGesture()
+        .onEnded {
+          if $0.translation.width < -100 {
+            withAnimation {
+              self.showMenu = false
+            }
           }
-          .padding(.bottom)
         }
+      
+      NavigationView {
+        GeometryReader { geometry in
+          ZStack(alignment: .leading){
+            VStack {
+              ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                  filterView().padding(.top)
+                  petTypeScrollView()
+                  recentPetSectionView()
+                  favoritesSectionView()
+                }
+                .padding(.bottom)
+              }
+            }
+            MenuView()
+              .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
+              .animation(.interactiveSpring(response: 0.6,
+                                            dampingFraction: 0.6, blendDuration: 0.6))
+            Spacer()
+          }
+          .gesture(drag)
+          if typing {
+            KeyboardToolBarView() {
+              requestWebData()
+            }
+          }
+        }
+        .navigationBarTitle("Petulia", displayMode: .large)
+        .navigationBarItems(leading: (
+          Button(action: {
+            self.showMenu.toggle()
+
+          }, label: {
+            
+            if self.showMenu{
+              Image(systemName: "multiply").font(.body).foregroundColor(.white)
+                .imageScale(.large)
+            } else{
+            Image(systemName: "line.horizontal.3")
+              .imageScale(.large)
+            }
+          })
+        ), trailing: HStack { settingsControlView() })
       }
-        if typing {
-          KeyboardToolBarView() {
-            requestWebData()
-          }
-        }
+      .onAppear { requestWebData() } // Assures data at startup
+      .navigationViewStyle(StackNavigationViewStyle()) // Solves the double column bug
+      .accentColor(theme.accentColor)
+      .preferredColorScheme(isDark ? .dark : .light)
     }
-      .navigationBarTitle("Petulia")
-      .navigationBarItems(trailing:
-                            HStack { settingsControlView() })
+  }
+
+struct MenuView: View {
+  @EnvironmentObject var theme: ThemeManager
+  //@State var currentPage: Page = .homeView
+  //@StateObject var viewRouter: ViewRouter
+  
+  
+  var body: some View {
+    VStack(alignment: .leading, spacing: 15) {
+      HStack {
+        Image(systemName: "tortoise")
+          .foregroundColor(.white)
+          .imageScale(.large)
+        Text("Pets")
+          .foregroundColor(.white)
+          .font(.headline)
+      }
+      .padding(.top, 120)
+      HStack {
+        Image(systemName: "globe")
+          .foregroundColor(.white)
+          .imageScale(.large)
+        Text("Welfare")
+          .foregroundColor(.white)
+          .font(.headline)
+      }
+      .padding(.top, 20)
+      HStack {
+        Image(systemName: "gear")
+          .foregroundColor(.white)
+          .imageScale(.large)
+        Text("Settings")
+          .foregroundColor(.white)
+          .font(.headline)
+      }
+      .padding(.top, 20)
+      HStack {
+        Image(systemName: "person")
+          .foregroundColor(.white)
+          .imageScale(.large)
+        Text("Profile")
+          .foregroundColor(.white)
+          .font(.headline)
+      }
+      .padding(.top, 20)
+      Spacer()
     }
-    .onAppear { requestWebData() } // Assures data at startup
-    .navigationViewStyle(StackNavigationViewStyle()) // Solves the double column bug
-    .accentColor(theme.accentColor)
-    .preferredColorScheme(isDark ? .dark : .light)
+    .padding()
+    .frame(maxWidth: UIScreen.main.bounds.width/2, alignment: .leading)
+    .background(theme.accentColor)
+    .edgesIgnoringSafeArea(.all)
   }
 }
+
 
 private extension HomeView {
   //MARK: - Methods
