@@ -78,11 +78,12 @@
 		79FC94762584D2ED001735C4 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC94752584D2ED001735C4 /* TileView.swift */; };
 		79FF944C256A562D00149140 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF944B256A562D00149140 /* Collection+Extension.swift */; };
 		A6E0CB1F799CD964E1235627 /* Pods_Petulia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A762D3FCD33220583E434E /* Pods_Petulia.framework */; };
+		FE5433CD263149EC004A8D03 /* Petfinder-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE5433CC263149EC004A8D03 /* Petfinder-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		158BE86E7F99D8C63797420F /* Pods-Petulia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.release.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.release.xcconfig"; sourceTree = "<group>"; };
-		1BC56B032632383A00F9CAA8 /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Petfinder-Info.plist"; path = "Petulia/Petfinder-Info.plist"; sourceTree = SOURCE_ROOT; };
+
 		5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		54A46A2226266D00001033AA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		54A46A2A262674F1001033AA /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 		79FC94752584D2ED001735C4 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		79FF944B256A562D00149140 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		84A762D3FCD33220583E434E /* Pods_Petulia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Petulia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE5433CC263149EC004A8D03 /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +418,7 @@
 				695B34F324D6CA1500A15D26 /* SceneDelegate.swift */,
 				695B34FF24D6CA2000A15D26 /* Info.plist */,
 				5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */,
+				FE5433CC263149EC004A8D03 /* Petfinder-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -528,13 +531,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BC56B042632383A00F9CAA8 /* Petfinder-Info.plist in Resources */,
+
 				697E7D6C24E9528C0039EBF2 /* confetti.json in Resources */,
 				695B34FE24D6CA2000A15D26 /* LaunchScreen.storyboard in Resources */,
 				697E7D6D24E9528C0039EBF2 /* thanks.json in Resources */,
 				794E2CCA25AAF8CB00234FDA /* paws-preloader.json in Resources */,
 				695B34FB24D6CA2000A15D26 /* Preview Assets.xcassets in Resources */,
 				794E2CCB25AAF8CB00234FDA /* cat-preloader.json in Resources */,
+				FE5433CD263149EC004A8D03 /* Petfinder-Info.plist in Resources */,
 				794E2CD125AAFE4100234FDA /* dots-preloader.json in Resources */,
 				5447E4F8262657A3009EAB80 /* GoogleService-Info.plist in Resources */,
 				695B34F824D6CA2000A15D26 /* Assets.xcassets in Resources */,
@@ -790,7 +794,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Petulia/Preview Content\"";
-				DEVELOPMENT_TEAM = HER732L49Q;
+				DEVELOPMENT_TEAM = 26PJ89TRRV;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Petulia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -798,7 +802,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.42.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.SamuelFolledo.Petulia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.markkim.Petulia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -814,7 +818,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Petulia/Preview Content\"";
-				DEVELOPMENT_TEAM = HER732L49Q;
+				DEVELOPMENT_TEAM = 26PJ89TRRV;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Petulia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -822,7 +826,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.42.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.SamuelFolledo.Petulia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.markkim.Petulia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
