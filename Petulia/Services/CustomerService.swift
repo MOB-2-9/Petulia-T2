@@ -148,7 +148,7 @@ struct CustomerService {
   }
 }
   
-  func addUserFavoritePets(pet: PetDetailViewModel, completion: @escaping AlertErrorCompletion) {
+  static func addUserFavoritePets(pet: PetDetailViewModel, completion: @escaping AlertErrorCompletion) {
     guard let userId = Customer.current?.userId else { return }
     db.collection(CollectionKeys.users)
       .document(userId)
@@ -162,7 +162,7 @@ struct CustomerService {
       }
   }
   
-  func removeUserFavoritePets(petId: String, completion: @escaping AlertErrorCompletion) {
+  static func removeUserFavoritePets(petId: String, completion: @escaping AlertErrorCompletion) {
     guard let userId = Customer.current?.userId else { return }
     db.collection(CollectionKeys.users)
       .document(userId)
@@ -170,7 +170,7 @@ struct CustomerService {
       .document(petId)
       .delete { (error) in
         if let error = error {
-          return completion(AlertError(title: "Error deleting pet", message: error.localizedDescription))
+          return completion(AlertError(title: "Error removing pet", message: error.localizedDescription))
         }
         completion(nil)
       }
