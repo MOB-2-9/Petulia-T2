@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Combine
+import FirebaseFirestore.FIRDocumentSnapshot
 
 struct PetDetailViewModel: Identifiable, Hashable, Codable {
   
@@ -72,6 +73,46 @@ struct PetDetailViewModel: Identifiable, Hashable, Codable {
     self.shelterId = model.organizationID ?? ""
     let date = Date.date(dateString: model.publishedAt!)
     self.postedDate = date?.timeAgo() ?? "Some time ago"
+  }
+  
+  init?(doc: DocumentSnapshot) {
+    guard let dic = doc.data(),
+          let id = dic[AnimalKeys.id] as? Int,
+          let name = dic[AnimalKeys.name] as? String,
+          let species = dic[AnimalKeys.species] as? String,
+          let breed = dic[AnimalKeys.breed] as? String,
+          let size = dic[AnimalKeys.size] as? String,
+          let age = dic[AnimalKeys.age] as? String,
+          let tags = dic[AnimalKeys.tags] as? [String],
+          let attributes = dic[AnimalKeys.attributes] as? [String: Bool],
+          let description = dic[AnimalKeys.description] as? String,
+          let photosDic = dic[AnimalKeys.photos] as? [[String: String]],
+          let gender = dic[AnimalKeys.gender] as? String,
+          let status = dic[AnimalKeys.status] as? String,
+          let distance = dic[AnimalKeys.distance] as? String,
+          let shelterId = dic[AnimalKeys.shelterId] as? String,
+          let postedDate = dic[AnimalKeys.postedDate] as? String
+    else { return nil }
+    self.urlString = dic[AnimalKeys.urlString] as? String
+    self.id = id
+    self.name = name
+    self.species = species
+    self.breed = breed
+    self.size = size
+    self.age = age
+    self.tags = tags
+    self.attributes = attributes
+    self.description = description
+    self.photos = []
+    for photoDic in photosDic {
+      let photo = Photo(dic: photoDic)
+      self.photos.append(photo)
+    }
+    self.gender = gender
+    self.status = status
+    self.distance = distance
+    self.shelterId = shelterId
+    self.postedDate = postedDate
   }
 }
 
