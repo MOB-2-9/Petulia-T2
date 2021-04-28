@@ -23,68 +23,69 @@ struct HomeView: View {
   private var filteredPets: [PetDetailViewModel] {
     return petDataController.allPets
   }
-
+  
   var body: some View {
-      
-      let drag = DragGesture()
-        .onEnded {
-          if $0.translation.width < -100 {
-            withAnimation {
-              self.showMenu = false
-            }
+    
+    let drag = DragGesture()
+      .onEnded {
+        if $0.translation.width < -100 {
+          withAnimation {
+            self.showMenu = false
           }
         }
-      
-      NavigationView {
-        GeometryReader { geometry in
-          ZStack(alignment: .leading){
-            VStack {
-              ScrollView(.vertical, showsIndicators: false) {
-                VStack {
-                  filterView().padding(.top)
-                  petTypeScrollView()
-                  recentPetSectionView()
-                  favoritesSectionView()
-                }
-                .padding(.bottom)
+      }
+    
+    NavigationView {
+      GeometryReader { geometry in
+        ZStack(alignment: .leading){
+          VStack {
+            ScrollView(.vertical, showsIndicators: false) {
+              VStack {
+                filterView().padding(.top)
+                petTypeScrollView()
+                recentPetSectionView()
+                favoritesSectionView()
               }
+              .padding(.bottom)
             }
-            MenuView()
-              .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
-              .animation(.interactiveSpring(response: 0.6,
-                                            dampingFraction: 0.6, blendDuration: 0.6))
-            Spacer()
           }
-          .gesture(drag)
-          if typing {
-            KeyboardToolBarView() {
-              requestWebData()
-            }
+          MenuView()
+            .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
+            .animation(.interactiveSpring(response: 0.6,
+                                          dampingFraction: 0.6, blendDuration: 0.6))
+          Spacer()
+        }
+        .gesture(drag)
+        if typing {
+          KeyboardToolBarView() {
+            requestWebData()
           }
         }
-        .navigationBarTitle("Petulia", displayMode: .large)
-        .navigationBarItems(leading: (
-          Button(action: {
-            self.showMenu.toggle()
-
-          }, label: {
-            
-            if self.showMenu{
-              Image(systemName: "multiply").font(.body).foregroundColor(.white)
-                .imageScale(.large)
-            } else{
+      }
+      .navigationBarTitle("Petulia", displayMode: .large)
+      .navigationBarItems(leading: (
+        Button(action: {
+          self.showMenu.toggle()
+          
+        }, label: {
+          
+          if self.showMenu{
+            Image(systemName: "multiply").font(.body).foregroundColor(.white)
+              .imageScale(.large)
+          } else{
             Image(systemName: "line.horizontal.3")
               .imageScale(.large)
-            }
-          })
-        ), trailing: HStack { settingsControlView() })
-      }
-      .onAppear { requestWebData() } // Assures data at startup
-      .navigationViewStyle(StackNavigationViewStyle()) // Solves the double column bug
-      .accentColor(theme.accentColor)
-      .preferredColorScheme(isDark ? .dark : .light)
+          }
+        })
+      ), trailing: HStack { settingsControlView() })
     }
+    .onAppear { requestWebData() } // Assures data at startup
+    .navigationViewStyle(StackNavigationViewStyle()) // Solves the double column bug
+    .accentColor(theme.accentColor)
+    .preferredColorScheme(isDark ? .dark : .light)
+    .alert(with: $favorites.errorMessage)
   }
+}
 
 struct MenuView: View {
   @EnvironmentObject var theme: ThemeManager
@@ -132,30 +133,29 @@ struct MenuView: View {
       .padding(.top, 20)
       Spacer()
     }
-    .onAppear { requestWebData() } // Assures data at startup
-    .navigationViewStyle(StackNavigationViewStyle()) // Solves the double column bug
-    .accentColor(theme.accentColor)
-    .preferredColorScheme(isDark ? .dark : .light)
-    .alert(with: $favorites.errorMessage)
+    .padding()
+    .frame(maxWidth: UIScreen.main.bounds.width/2, alignment: .leading)
+    .background(theme.accentColor)
+    .edgesIgnoringSafeArea(.all)
   }
 }
 
 
 private extension HomeView {
   //MARK: - Methods
-    func requestWebData() {
+  func requestWebData() {
     self.petDataController.requestPets(around: postcode.isEmpty ? nil : postcode)
   }
   
   //MARK: - Components
   
-    func filterView() -> some View {
+  func filterView() -> some View {
     FilterBarView(postcode: $postcode, typing: $typing) {
       requestWebData()
     }
   }
   
-    func petTypeScrollView() -> some View {
+  func petTypeScrollView() -> some View {
     PetTypeScrollView(
       types: petDataController.petType.types,
       currentPetType: petDataController.petType.currentPetType) { (petType) in
@@ -163,8 +163,8 @@ private extension HomeView {
       requestWebData()
     }
   }
-
-    func recentPetSectionView() -> some View {
+  
+  func recentPetSectionView() -> some View {
     SectionView(
       kind: .recent,
       petViewModel: filteredPets,
@@ -176,7 +176,7 @@ private extension HomeView {
     )
   }
   
-    func favoritesSectionView() -> some View {
+  func favoritesSectionView() -> some View {
     SectionView(
       kind: .favorites,
       petViewModel: favorites.list,
@@ -184,7 +184,7 @@ private extension HomeView {
     )
   }
   
-    func settingsControlView() -> some View {
+  func settingsControlView() -> some View {
     SettingsButton(presentation: $showSettingsSheet) {
       requestWebData()
     }
