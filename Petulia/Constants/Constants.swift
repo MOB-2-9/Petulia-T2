@@ -45,3 +45,37 @@ enum Keys {
   static let name = "name"
   static let email = "email"
 }
+
+enum AnimalKeys {
+  static let id = "id"
+  static let urlString = "urlString"
+  static let name = "name"
+  static let species = "species"
+  static let breed = "breed"
+  static let size = "size"
+  static let age = "age"
+  static let tags = "tags"
+  static let attributes = "attributes"
+  static let description = "description"
+  static let photos = "photos"
+  static let gender = "gender"
+  static let status = "status"
+  static let distance = "distance"
+  static let shelterId = "shelterId"
+  static let postedDate = "postedDate"
+  static let contact = "contact"
+}
+
+extension AnimalKeys {
+  enum Photos {
+    static let smallPhoto = "smallPhoto"
+    static let mediumPhoto = "mediumPhoto"
+    static let largePhoto = "largePhoto"
+    static let fullPhoto = "fullPhoto"
+  }
+  
+  enum Contact {
+    static let email = "email"
+    static let phone = "phone"
+  }
+}

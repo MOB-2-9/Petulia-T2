@@ -11,6 +11,7 @@ import FirebaseAuth.FIRUser
 //MARK: - Type Aliases
 typealias AlertErrorCompletion = (_ error: AlertError?) -> Void
 typealias CustomerWithAlertErrorCompletion = (_ space: Customer?, _ error: AlertError?) -> Void
+typealias FavoritesWithAlertErrorCompletion = (_ animals: [PetDetailViewModel], _ error: AlertError?) -> Void
 
 struct CustomerService {
   
@@ -144,5 +145,56 @@ struct CustomerService {
         }
       }
     }
+  }
+}
+
+//MARK: - Favorites Methods
+
+extension CustomerService {
+  ///load current user's favorite pets from Users/userId/FavoritePets collection
+  static func loadUserFavoritePets(completion: @escaping FavoritesWithAlertErrorCompletion) {
+    guard let userId = Customer.current?.userId else { return }
+    db.collection(CollectionKeys.users)
+      .document(userId)
+      .collection(CollectionKeys.Users.favoritePets)
+      .getDocuments(completion: { (snapshot, error) in
+        if let error = error {
+          return completion([], AlertError(title: "Error fetching favorite pets", message: error.localizedDescription))
+        }
+        guard let snapshot = snapshot else { return }
+        //create an array of PetDetailViewModel from each documents
+        let animals = snapshot.documents.compactMap{PetDetailViewModel(doc: $0)}
+        return completion(animals, nil)
+      })
+  }
+
+  ///add a pet to user's FavoritePets collection in database
+  static func addUserFavoritePets(pet: PetDetailViewModel, completion: @escaping AlertErrorCompletion) {
+    guard let userId = Customer.current?.userId else { return }
+    db.collection(CollectionKeys.users)
+      .document(userId)
+      .collection(CollectionKeys.Users.favoritePets)
+      .document("\(pet.id)")
+      .setData(pet.asDictionary, merge: true) { (error) in
+        if let error = error {
+          return completion(AlertError(title: "Error saving pet", message: error.localizedDescription))
+        }
+        completion(nil)
+      }
+  }
+  
+  ///remove a pet from user's FavoritePets collection in database
+  static func removeUserFavoritePets(petId: String, completion: @escaping AlertErrorCompletion) {
+    guard let userId = Customer.current?.userId else { return }
+    db.collection(CollectionKeys.users)
+      .document(userId)
+      .collection(CollectionKeys.Users.favoritePets)
+      .document(petId)
+      .delete { (error) in
+        if let error = error {
+          return completion(AlertError(title: "Error removing pet", message: error.localizedDescription))
+        }
+        completion(nil)
+      }
   }
 }

@@ -24,7 +24,7 @@ struct Animal: Codable, Identifiable {
   let photos: [Photo]?
   let distance: Double?
   let breeds: Breed?
-  let contact: Contact?
+  let contact: Contact
   
   enum CodingKeys: String, CodingKey {
     case id
@@ -78,6 +78,39 @@ struct LinkString: Codable {
 
 struct Photo: Codable {
   let small, medium, large, full: String?
+  
+  var asDictionary: [String: Any] {
+    get {
+      var dic: [String: Any] = [:]
+      if let small = small {
+        dic[AnimalKeys.Photos.smallPhoto] = small
+      }
+      if let medium = medium {
+        dic[AnimalKeys.Photos.mediumPhoto] = medium
+      }
+      if let large = large {
+        dic[AnimalKeys.Photos.largePhoto] = large
+      }
+      if let full = full {
+        dic[AnimalKeys.Photos.fullPhoto] = full
+      }
+      return dic
+    }
+  }
+  
+  init(dic: [String: String]) {
+    self.small = dic[AnimalKeys.Photos.smallPhoto]
+    self.medium = dic[AnimalKeys.Photos.mediumPhoto]
+    self.large = dic[AnimalKeys.Photos.largePhoto]
+    self.full = dic[AnimalKeys.Photos.fullPhoto]
+  }
+  
+  init(small: String?, medium: String?, large: String?, full: String?) {
+    self.small = small
+    self.medium = medium
+    self.large = large
+    self.full = full
+  }
   
   func imagePath(for size: Size) -> String {
     let noUrlString = "no-image"
@@ -140,7 +173,6 @@ extension Attributes {
       "declawed": declawed ?? false,
       "special": special ?? false,
       "vacinated": vacinated ?? false
-      
     ]
   }
 }
@@ -149,4 +181,23 @@ extension Attributes {
 struct Contact: Codable {
   let email: String?
   let phone: String?
+  
+  init(dic: [String: Any]) {
+    self.email = dic[AnimalKeys.Contact.email] as? String
+    self.phone = dic[AnimalKeys.Contact.phone] as? String
+  }
+  
+  init(email: String, phone: String) {
+    self.email = email
+    self.phone = phone
+  }
+  
+  var asDictionary: [String: String] {
+    get {
+      return [
+        AnimalKeys.Contact.email: email ?? "",
+        AnimalKeys.Contact.phone: phone ?? "",
+      ]
+    }
+  }
 }

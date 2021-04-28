@@ -15,4 +15,8 @@ let auth = Auth.auth()
 
 enum CollectionKeys {
   static var users = "Users"
+  
+  enum Users {
+    static let favoritePets = "FavoritePets"
+  }
 }
