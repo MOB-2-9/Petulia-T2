@@ -48,6 +48,11 @@ struct HomeView: View {
               }
               .padding(.bottom)
             }
+              if typing {
+                KeyboardToolBarView() {
+                  requestWebData()
+                }
+              }
           }
           MenuView()
             .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
@@ -55,12 +60,7 @@ struct HomeView: View {
                                           dampingFraction: 0.6, blendDuration: 0.6))
           Spacer()
         }
-        .gesture(drag)
-        if typing {
-          KeyboardToolBarView() {
-            requestWebData()
-          }
-        }
+          .gesture(drag)
       }
       .navigationBarTitle("Petulia", displayMode: .large)
       .navigationBarItems(leading: (
