@@ -28,18 +28,23 @@ struct FilterBarView: View {
                   },
                   onCommit:  {
                     action?() //requestWebData()
-                  })
-          .font(.headline)
-          .multilineTextAlignment(.center)
-          .keyboardType(.numberPad)
-          .disableAutocorrection(true)
-          .frame(maxWidth: 100)
-          .padding(.vertical, 8)
-          .onReceive(Just(self.postcode)) { inputValue in  //For every input after the postal code is 5 digits long, remove last to keep the data useable
-            if inputValue.count > 5 {
-              self.postcode.removeLast()
-            }
+                  }
+        )
+        .font(.headline)
+        .multilineTextAlignment(.center)
+        .keyboardType(.numberPad)
+        .disableAutocorrection(true)
+        .frame(maxWidth: 100)
+        .padding(.vertical, 8)
+        .onReceive(Just(self.postcode)) { inputValue in  //For every input after the postal code is 5 digits long, remove last to keep the data useable
+          let filtered = postcode.filter { $0.isNumber }
+          if postcode != filtered {
+              postcode = filtered
           }
+          if inputValue.count > 5 {
+            self.postcode.removeLast()
+          }
+        }
         
         if !postcode.isEmpty {
           Image(systemName: "xmark.circle.fill")
