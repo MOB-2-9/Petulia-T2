@@ -51,6 +51,7 @@ struct HomeView: View {
     .navigationViewStyle(StackNavigationViewStyle()) // Solves the double column bug
     .accentColor(theme.accentColor)
     .preferredColorScheme(isDark ? .dark : .light)
+    .alert(with: $favorites.errorMessage)
   }
 }
 
