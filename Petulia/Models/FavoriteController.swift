@@ -10,6 +10,7 @@ import SwiftUI
 
 class FavoriteController: ObservableObject {
   @Published private(set) var list = [PetDetailViewModel]()
+  @Published var errorMessage: AlertMessage?
   
   private var storage: StorageService
   
@@ -19,8 +20,12 @@ class FavoriteController: ObservableObject {
   }
   
   func load() {
-    if let loaded = storage.loadFromDevice(named: .favorites, as: [PetDetailViewModel].self) {
-      list = loaded
+    CustomerService.loadUserFavoritePets { pets, alertError in
+      if let alertError = alertError {
+        self.handleAlertError(alertError: alertError)
+        return
+      }
+      self.list = pets
     }
   }
   
@@ -31,13 +36,23 @@ class FavoriteController: ObservableObject {
   func addToFavorite(pet: PetDetailViewModel) {
     guard !list.contains(pet) else { return }
     list.insert(pet, at: 0)
-    save()
+    CustomerService.addUserFavoritePets(pet: pet) { alertError in
+      if let alertError = alertError {
+        self.handleAlertError(alertError: alertError)
+        return
+      }
+    }
   }
   
   func removeFromFavorite(pet: PetDetailViewModel) {
     if let index = list.firstIndex(of: pet) {
       list.remove(at: index)
-      save()
+      CustomerService.removeUserFavoritePets(petId: "\(pet.id)") { alertError in
+        if let alertError = alertError {
+          self.handleAlertError(alertError: alertError)
+          return
+        }
+      }
     }
   }
   
@@ -52,5 +67,11 @@ class FavoriteController: ObservableObject {
       addToFavorite(pet: pet)
     }
   }
-  
+}
+
+//MARK: FavoriteController Helpers
+extension FavoriteController {
+  func handleAlertError(alertError: AlertError) {
+      errorMessage = AlertMessage.alertError(alertError: alertError)
+  }
 }
