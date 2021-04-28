@@ -167,7 +167,8 @@ extension CustomerService {
         return completion(animals, nil)
       })
   }
-  
+
+  ///add a pet to user's FavoritePets collection in database
   static func addUserFavoritePets(pet: PetDetailViewModel, completion: @escaping AlertErrorCompletion) {
     guard let userId = Customer.current?.userId else { return }
     db.collection(CollectionKeys.users)
@@ -182,6 +183,7 @@ extension CustomerService {
       }
   }
   
+  ///remove a pet from user's FavoritePets collection in database
   static func removeUserFavoritePets(petId: String, completion: @escaping AlertErrorCompletion) {
     guard let userId = Customer.current?.userId else { return }
     db.collection(CollectionKeys.users)
