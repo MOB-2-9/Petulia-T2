@@ -19,10 +19,8 @@ struct PetDetailView: View {
   
   @State private var showAdoptionForm: Bool = false
   @State private var zoomingImage = false
-  
   @State var result: Result<MFMailComposeResult, Error>? = nil
   @State private var showingMailView = false
-  
   @State private var showingPhoneAlert = false
   @State private var showingEmailAlert = false
   
@@ -30,7 +28,6 @@ struct PetDetailView: View {
     ScrollView(.vertical, showsIndicators: false) {
       VStack {
         stretchingHeroView()
-        
         VStack(alignment: .leading) {
           HStack {
             Text("Details")
@@ -39,13 +36,10 @@ struct PetDetailView: View {
             Spacer()
           }
           .padding()
-          
           characteristicScrollView()
-          
           descriptionView()
             .padding()
           Spacer()
-          
           contactInfoView()
             .padding(.horizontal, 100)
         }
@@ -66,15 +60,12 @@ private extension PetDetailView {
           startPoint: .bottom,
           endPoint: .top
         )
-        
         favoriteBar()
           .offset(y: 40)
-        
         VStack {
           Spacer(minLength: 100)
           heroExpandableImage()
           Spacer()
-          
           Text(viewModel.name)
             .font(.title2)
             .fontWeight(.light)
@@ -206,7 +197,7 @@ private extension PetDetailView {
     HStack {
       Button {
         print("call tapped")
-        guard let phoneNumber = viewModel.contact.phone else {
+        guard let phoneNumber = viewModel.contact?.phone else {
           showingPhoneAlert = true
           return
         }
@@ -223,7 +214,7 @@ private extension PetDetailView {
       
       Button {
         print("email tapped")
-        guard let email = viewModel.contact.email else {
+        guard let _ = viewModel.contact?.email else {
           showingEmailAlert = true
           return
         }
@@ -233,17 +224,14 @@ private extension PetDetailView {
       }
       .disabled(!MFMailComposeViewController.canSendMail())
       .sheet(isPresented: $showingMailView) {
-        MailView(result: self.$result, recipient: viewModel.contact.email!)
+        MailView(result: self.$result, recipient: (viewModel.contact?.email!)!)
       }
       .alert(isPresented: $showingEmailAlert) { () -> Alert in
         Alert(title: Text("No Email"), message: Text("This pet has no email"), dismissButton: .default(Text("Dismiss")))
       }
-      
-      
     }
+    .padding(.bottom, 16)
   }
-
-  
 }
 
 // MARK: - PREVIEWS

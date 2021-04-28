@@ -63,6 +63,7 @@ enum AnimalKeys {
   static let distance = "distance"
   static let shelterId = "shelterId"
   static let postedDate = "postedDate"
+  static let contact = "contact"
 }
 
 extension AnimalKeys {
@@ -71,5 +72,10 @@ extension AnimalKeys {
     static let mediumPhoto = "mediumPhoto"
     static let largePhoto = "largePhoto"
     static let fullPhoto = "fullPhoto"
+  }
+  
+  enum Contact {
+    static let email = "email"
+    static let phone = "phone"
   }
 }

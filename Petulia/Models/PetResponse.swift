@@ -24,7 +24,7 @@ struct Animal: Codable, Identifiable {
   let photos: [Photo]?
   let distance: Double?
   let breeds: Breed?
-  let contact: Contact?
+  let contact: Contact
   
   enum CodingKeys: String, CodingKey {
     case id
@@ -173,7 +173,6 @@ extension Attributes {
       "declawed": declawed ?? false,
       "special": special ?? false,
       "vacinated": vacinated ?? false
-      
     ]
   }
 }
@@ -182,4 +181,23 @@ extension Attributes {
 struct Contact: Codable {
   let email: String?
   let phone: String?
+  
+  init(dic: [String: Any]) {
+    self.email = dic[AnimalKeys.Contact.email] as? String
+    self.phone = dic[AnimalKeys.Contact.phone] as? String
+  }
+  
+  init(email: String, phone: String) {
+    self.email = email
+    self.phone = phone
+  }
+  
+  var asDictionary: [String: String] {
+    get {
+      return [
+        AnimalKeys.Contact.email: email ?? "",
+        AnimalKeys.Contact.phone: phone ?? "",
+      ]
+    }
+  }
 }

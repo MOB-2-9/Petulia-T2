@@ -28,7 +28,7 @@ struct PetDetailViewModel: Identifiable, Hashable, Codable {
   var distance: String
   var shelterId: String
   var postedDate: String
-  var contact: Contact
+  var contact: Contact?
   
   var asDictionary: [String: Any] {
     get {
@@ -52,6 +52,9 @@ struct PetDetailViewModel: Identifiable, Hashable, Codable {
       if let urlString = urlString {
         dic[AnimalKeys.urlString] = urlString
       }
+      if let contact = contact {
+        dic[AnimalKeys.contact] = contact.asDictionary
+      }
       return dic
     }
   }
@@ -74,7 +77,7 @@ struct PetDetailViewModel: Identifiable, Hashable, Codable {
     self.shelterId = model.organizationID ?? ""
     let date = Date.date(dateString: model.publishedAt!)
     self.postedDate = date?.timeAgo() ?? "Some time ago"
-    self.contact = model.contact ?? Contact(email: nil, phone: nil)
+    self.contact = model.contact
   }
   
   init?(doc: DocumentSnapshot) {
@@ -115,6 +118,9 @@ struct PetDetailViewModel: Identifiable, Hashable, Codable {
     self.distance = distance
     self.shelterId = shelterId
     self.postedDate = postedDate
+    if let contactDic = dic[AnimalKeys.contact] as? [String: String] {
+      self.contact = Contact(dic: contactDic)
+    }
   }
 }
 
@@ -172,9 +178,3 @@ struct Characteristic: Identifiable {
   var title: String
   var label: String
 }
-
-//MARK: Contact
-//struct Contact: Identifiable {
-//  var phone: String?
-//  var email: String?
-//}
