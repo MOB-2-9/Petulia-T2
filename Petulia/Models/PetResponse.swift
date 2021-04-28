@@ -96,6 +96,20 @@ struct Photo: Codable {
     }
   }
   
+  init(dic: [String: String]) {
+    self.small = dic[AnimalKeys.Photos.smallPhoto]
+    self.medium = dic[AnimalKeys.Photos.mediumPhoto]
+    self.large = dic[AnimalKeys.Photos.largePhoto]
+    self.full = dic[AnimalKeys.Photos.fullPhoto]
+  }
+  
+  init(small: String?, medium: String?, large: String?, full: String?) {
+    self.small = small
+    self.medium = medium
+    self.large = large
+    self.full = full
+  }
+  
   func imagePath(for size: Size) -> String {
     let noUrlString = "no-image"
     switch size {
