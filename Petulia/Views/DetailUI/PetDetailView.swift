@@ -46,10 +46,38 @@ struct PetDetailView: View {
       }
     }
     .navigationBarTitle("", displayMode: .inline)
+    .toolbar {
+      Button(action: {
+        presentShareSheet()
+      }) {
+        Image(systemName: "square.and.arrow.up")
+      }
+    }
   }
 }
 
 private extension PetDetailView {
+  
+  // MARK: - Sharing functionality
+  func presentShareSheet() {
+    let items = [
+      "Help them find a home 💚",
+      "Name: \(viewModel.name)\n",
+      "Breed: \(viewModel.breed)\n",
+      "Phone: \(viewModel.contact?.phone ?? "")\n" as Any,
+      viewModel.url
+    ] as [Any]
+    
+    let shareActivity = UIActivityViewController(activityItems: items, applicationActivities: nil)
+          if let vc = UIApplication.shared.windows.first?.rootViewController{
+              shareActivity.popoverPresentationController?.sourceView = vc.view
+             //Setup share activity position on screen on bottom center
+              shareActivity.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height, width: 0, height: 0)
+              shareActivity.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+             vc.present(shareActivity, animated: true, completion: nil)
+          }
+  }
+  
   
   // MARK: - COMPONENTS
   func stretchingHeroView() -> some View {
