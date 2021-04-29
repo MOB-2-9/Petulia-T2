@@ -59,21 +59,14 @@ struct PetDetailView: View {
 private extension PetDetailView {
   
   // MARK: - Sharing functionality
-  
-  
   func presentShareSheet() {
-    
     let items = [
       "Help them find a home 💚",
       "Name: \(viewModel.name)\n",
       "Breed: \(viewModel.breed)\n",
       "Phone: \(viewModel.contact?.phone ?? "")\n" as Any,
       viewModel.url
-  
-    
     ] as [Any]
-    
-    
     
     let shareActivity = UIActivityViewController(activityItems: items, applicationActivities: nil)
           if let vc = UIApplication.shared.windows.first?.rootViewController{
@@ -83,8 +76,6 @@ private extension PetDetailView {
               shareActivity.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
              vc.present(shareActivity, animated: true, completion: nil)
           }
-
-    
   }
   
   
