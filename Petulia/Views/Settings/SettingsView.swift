@@ -16,14 +16,13 @@ struct SettingsView: View {
   @State private var isDirty = false
   
   @AppStorage(Keys.savedPostcode) var postcode = ""
+  @AppStorage(Keys.showOnlyPostWithImages) var showOnlyPetsWithImages = false
   
   @State private var typing = false
   
   @State private var accent = Color.pink
   @State private var showColorPicker = false
-  
-  @State private var showOnlyPetsWithImages = false
-  
+    
   var body: some View {
     ZStack (alignment: .bottom) {
       VStack {
@@ -34,7 +33,6 @@ struct SettingsView: View {
           Form {
             resultSessionView()
             themeSessionView()
-            onlyPostsWithImagesToggleView()
             aboutSessionView()
           }
           if !typing {
@@ -96,6 +94,7 @@ private extension SettingsView {
       .keyboardType(.phonePad)
       .disableAutocorrection(true)
       
+      Toggle("Only pets with pictures", isOn: $showOnlyPetsWithImages)
     }
   }
   
@@ -121,25 +120,6 @@ private extension SettingsView {
     .onChange(of: accent) { color in
       theme.setAccentColor(to: color)
     }
-  }
-  
-  func onlyPostsWithImagesToggleView() -> some View {
-    VStack {
-      Toggle("Only pets with pictures", isOn: $showOnlyPetsWithImages)
-      
-      if showOnlyPetsWithImages {
-        
-        
-        
-        
-        // something here
-        
-        
-        
-        
-      }
-    }
-    .contentShape(Rectangle())
   }
 }
 
