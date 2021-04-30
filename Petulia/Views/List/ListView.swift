@@ -17,28 +17,34 @@ struct ListView: View {
 
   var body: some View {
     VStack {
-      ScrollView(.vertical, showsIndicators: true) {
-        LazyVStack(spacing: 5) {
-          ForEach(petViewModel, id: \.id) { pet in
-            NavigationLink(destination: PetDetailView(viewModel: pet)) {
-              PetRow(pet)
-                .padding(.horizontal)
-                .contentShape(Rectangle())
-            }
-            .buttonStyle(ClearButtonStyle())
-            .animation(.default)
-          }
-        }
-        .padding(.vertical)
-        Spacer()
-
-        if showPagination {
-          paginationControl()
-            .padding(.bottom)
-        }
-      }
+      
+      tableView
     }
     .navigationBarTitle(showPagination ? title + " \(petDataController.pagination.currentPage)" : title)
+  }
+  
+  //MARK: - Views
+  var tableView: some View {
+    ScrollView(.vertical, showsIndicators: true) {
+      LazyVStack(spacing: 5) {
+        ForEach(petViewModel, id: \.id) { pet in
+          NavigationLink(destination: PetDetailView(viewModel: pet)) {
+            PetRow(pet)
+              .padding(.horizontal)
+              .contentShape(Rectangle())
+          }
+          .buttonStyle(ClearButtonStyle())
+          .animation(.default)
+        }
+      }
+      .padding(.vertical)
+      Spacer()
+
+      if showPagination {
+        paginationControl()
+          .padding(.bottom)
+      }
+    }
   }
 }
 
