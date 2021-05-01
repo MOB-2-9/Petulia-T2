@@ -12,22 +12,28 @@ struct PetFilterView: View {
     var body: some View {
       HStack {
         Button(action: buttonTapped, label: {
-          Text("Tap me")
+          Text("Sort By") //distance, size, date,
         })
         Button(action: buttonTapped, label: {
-          Text("Tap me2")
+          Text("Age")
         })
         Button(action: buttonTapped, label: {
-          Text("Tap me3")
+          Text("Gender")
         })
         Button(action: buttonTapped, label: {
-          Text("Tap me4")
+          Text("Size")
+        })
+        Button(action: buttonTapped, label: {
+          Text("Attributes") //spayed, trained, declawed, special, vacinated
+        })
+        Button(action: buttonTapped, label: {
+          Text("Breed") //primary, secondary, mixed?
         })
       }
     }
   
   func buttonTapped() {
-    
+    print("Tapped!")
   }
 }
 
