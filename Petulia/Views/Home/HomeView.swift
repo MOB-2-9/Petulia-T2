@@ -54,10 +54,14 @@ struct HomeView: View {
                 }
               }
           }
+          
+          BackgroundMenuView()
+            .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
+            .animation(.easeInOut(duration: 0.2))
           MenuView()
             .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
             .animation(.interactiveSpring(response: 0.6,
-                                          dampingFraction: 0.6, blendDuration: 0.6))
+                                          dampingFraction: 0.5, blendDuration: 0.5))
           Spacer()
         }
           .gesture(drag)
@@ -103,7 +107,7 @@ struct MenuView: View {
           .foregroundColor(.white)
           .font(.headline)
       }
-      .padding(.top, 120)
+      .padding(.top, 140)
       HStack {
         Image(systemName: "globe")
           .foregroundColor(.white)
@@ -137,6 +141,31 @@ struct MenuView: View {
     .frame(maxWidth: UIScreen.main.bounds.width/2, alignment: .leading)
     .background(theme.accentColor)
     .edgesIgnoringSafeArea(.all)
+  }
+  
+}
+
+struct BackgroundMenuView: View {
+  
+  @EnvironmentObject var theme: ThemeManager
+  
+  var body: some View {
+    VStack(alignment: .leading, spacing: 15) {
+    HStack {
+      Image(systemName: "person")
+        .foregroundColor(theme.accentColor)
+        .imageScale(.large)
+      Text("Profile")
+        .foregroundColor(theme.accentColor)
+        .font(.headline)
+    }
+    .padding(.top, 20)
+    Spacer()
+  }
+  .padding()
+  .frame(maxWidth: UIScreen.main.bounds.width/2, alignment: .leading)
+  .background(theme.accentColor)
+  .edgesIgnoringSafeArea(.all)
   }
 }
 
