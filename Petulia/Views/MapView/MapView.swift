@@ -9,18 +9,19 @@
 import Foundation
 import MapKit
 import SwiftUI
+import CoreLocation
 
 struct MapView: UIViewRepresentable {
   
-  var address: Address
+  var address: String
   var locationManager = CLLocationManager()
   @State var coordinate = CLLocationCoordinate2D()
-  @Binding var pins: [Pin]
+  //@Binding var pins: [Pin]
   
   func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
     setupManager()
     let mapView = MKMapView(frame: .zero)
-    mapView.userTrackingMode = .follow
+     mapView.userTrackingMode = .follow
     return mapView
     
   }
@@ -28,7 +29,20 @@ struct MapView: UIViewRepresentable {
   func updateUIView(_ uiView: MKMapView, context: Context) {
     
     //let location = address.address1
-    uiView.addAnnotation(pins as! MKAnnotation)
+    //uiView.addAnnotation(pins as! MKAnnotation)
+    setupManager()
+    coordinates(forAddress: address) { (location) in
+      guard let location = location else {
+        return
+      }
+      coordinate = location
+    }
+    let annotation = MKPointAnnotation()
+    annotation.coordinate = coordinate
+    
+    let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+    let region = MKCoordinateRegion(center: coordinate, span: span)
+    uiView.setRegion(region, animated: true)
   }
   
   func setupManager(){
@@ -37,7 +51,18 @@ struct MapView: UIViewRepresentable {
     locationManager.requestAlwaysAuthorization()
   }
   
+  func coordinates(forAddress address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
+    let geoLocator = CLGeocoder()
+    geoLocator.geocodeAddressString(address) { (petAddress, error) in
+      guard error == nil else {
+        print("Location issue: \(error!)")
+        completion(nil)
+        return
+      }
+      completion(petAddress?.first?.location?.coordinate)
+    }
   
+}
 }
 
 class Pin: NSObject, MKAnnotation {

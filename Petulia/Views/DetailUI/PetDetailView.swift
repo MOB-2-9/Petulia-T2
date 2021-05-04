@@ -14,7 +14,8 @@ import MapKit
 struct PetDetailView: View {
   
   var viewModel: PetDetailViewModel
-  var address: Address
+  var addressLocation: Address?
+  //var address1: address
   @EnvironmentObject var favorites: FavoriteController
   @EnvironmentObject var theme: ThemeManager // to pass to sheets.
   @AppStorage(Keys.isDark) var isDark = false
@@ -40,6 +41,11 @@ struct PetDetailView: View {
             Spacer()
           }
           .padding()
+          MapView(address: "\(AnimalKeys.Contact.address)")
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/6, alignment: .center)
+            
+          .padding()
+          
           characteristicScrollView()
           descriptionView()
             .padding()
