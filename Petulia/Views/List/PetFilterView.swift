@@ -14,21 +14,19 @@ struct PetFilterView: View {
         Button(action: buttonTapped, label: {
           Text("Sort By") //distance, size, date,
         })
+        .frame(maxWidth: .infinity)
         Button(action: buttonTapped, label: {
-          Text("Age")
+          Text("Age") //Young
         })
+        .frame(maxWidth: .infinity)
         Button(action: buttonTapped, label: {
-          Text("Gender")
+          Text("Gender") //Female
         })
+        .frame(maxWidth: .infinity)
         Button(action: buttonTapped, label: {
-          Text("Size")
+          Text("Size") //Medium
         })
-        Button(action: buttonTapped, label: {
-          Text("Attributes") //spayed, trained, declawed, special, vacinated
-        })
-        Button(action: buttonTapped, label: {
-          Text("Breed") //primary, secondary, mixed?
-        })
+        .frame(maxWidth: .infinity)
       }
     }
   
