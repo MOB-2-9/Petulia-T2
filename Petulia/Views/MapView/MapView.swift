@@ -21,7 +21,7 @@ struct MapView: UIViewRepresentable {
   func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
     setupManager()
     let mapView = MKMapView(frame: .zero)
-     mapView.userTrackingMode = .follow
+     //mapView.userTrackingMode = .follow
     return mapView
     
   }
@@ -36,13 +36,15 @@ struct MapView: UIViewRepresentable {
         return
       }
       coordinate = location
+      let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+      let region = MKCoordinateRegion(center: coordinate, span: span)
+      uiView.setRegion(region, animated: true)
+      
+      let annotation = MKPointAnnotation()
+      annotation.coordinate = coordinate
     }
-    let annotation = MKPointAnnotation()
-    annotation.coordinate = coordinate
     
-    let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
-    let region = MKCoordinateRegion(center: coordinate, span: span)
-    uiView.setRegion(region, animated: true)
+    
   }
   
   func setupManager(){
@@ -56,13 +58,11 @@ struct MapView: UIViewRepresentable {
     geoLocator.geocodeAddressString(address) { (petAddress, error) in
       guard error == nil else {
         print("Location issue: \(error!)")
-        completion(nil)
-        return
+        return completion(nil)
       }
       completion(petAddress?.first?.location?.coordinate)
     }
-  
-}
+  }
 }
 
 class Pin: NSObject, MKAnnotation {

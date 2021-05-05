@@ -27,7 +27,7 @@ struct PetDetailView: View {
   @State private var showingMailView = false
   @State private var showingPhoneAlert = false
   @State private var showingEmailAlert = false
-
+  
   
   var body: some View {
     ScrollView(.vertical, showsIndicators: false) {
@@ -41,10 +41,11 @@ struct PetDetailView: View {
             Spacer()
           }
           .padding()
-          MapView(address: "\(AnimalKeys.Contact.address)")
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/6, alignment: .center)
-            
-          .padding()
+          if let postCode = viewModel.contact?.address?.postcode{
+            MapView(address: postCode)
+              .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/6, alignment: .center)
+              .padding()
+          }
           
           characteristicScrollView()
           descriptionView()
