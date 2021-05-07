@@ -16,9 +16,13 @@ struct ListView: View {
   var showPagination = true
 
   var body: some View {
-    VStack {
+    VStack(spacing: 0) {
       PetFilterView()
+        .padding([.top, .bottom], 8)
+        .padding([.leading, .trailing], 4)
+        .zIndex(1)
       tableView
+        .zIndex(0)
     }
     .navigationBarTitle(showPagination ? title + " \(petDataController.pagination.currentPage)" : title)
   }
