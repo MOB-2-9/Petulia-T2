@@ -39,17 +39,9 @@ struct PetFilterView: View {
   var body: some View {
     HStack {
       DropdownButton(displayText: .constant("Sort By"), options: sortByOptions, onSelect: onSelect)
-        .fixedSize(horizontal: true, vertical: true)
-        .frame(maxWidth: .infinity)
       DropdownButton(displayText: .constant("Age"), options: ageOptions, onSelect: onSelect)
-        .fixedSize(horizontal: true, vertical: true)
-        .frame(maxWidth: .infinity)
       DropdownButton(displayText: .constant("Gender"), options: genderOptions, onSelect: onSelect)
-        .fixedSize(horizontal: true, vertical: true)
-        .frame(maxWidth: .infinity)
       DropdownButton(displayText: .constant("Size"), options: sizeOptions, onSelect: onSelect)
-        .fixedSize(horizontal: true, vertical: true)
-        .frame(maxWidth: .infinity)
     }
   }
   

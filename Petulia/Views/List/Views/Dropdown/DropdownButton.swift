@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DropdownOption: Hashable {
   var title: String
+//  var isSelected: Bool
 //  var val: String
   public static func == (lhs: DropdownOption, rhs: DropdownOption) -> Bool {
     return lhs.title == rhs.title
@@ -36,6 +37,7 @@ struct DropdownButton: View {
 //    .padding(.horizontal)
 //    .cornerRadius(dropdownCornerRadius)
     .frame(height: self.buttonHeight)
+    .frame(maxWidth: .infinity)
     .overlay(
       RoundedRectangle(cornerRadius: dropdownCornerRadius)
         .stroke(Color.primary, lineWidth: 0)
