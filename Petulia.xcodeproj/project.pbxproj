@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		54137FBD2642216700ED33B5 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54137FBC2642216700ED33B5 /* DropDownView.swift */; };
+		54137FBD2642216700ED33B5 /* DropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54137FBC2642216700ED33B5 /* DropdownView.swift */; };
 		5447E4F8262657A3009EAB80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */; };
+		549A83AB2644F3C500CB861E /* DropdownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A83AA2644F3C500CB861E /* DropdownButton.swift */; };
 		54A46A2326266D00001033AA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2226266D00001033AA /* LoginView.swift */; };
 		54A46A2B262674F1001033AA /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2A262674F1001033AA /* Defaults.swift */; };
 		54A46A2E262675C7001033AA /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2D262675C7001033AA /* UserDefaults+Extensions.swift */; };
@@ -84,8 +85,9 @@
 
 /* Begin PBXFileReference section */
 		158BE86E7F99D8C63797420F /* Pods-Petulia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.release.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.release.xcconfig"; sourceTree = "<group>"; };
-		54137FBC2642216700ED33B5 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
+		54137FBC2642216700ED33B5 /* DropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownView.swift; sourceTree = "<group>"; };
 		5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		549A83AA2644F3C500CB861E /* DropdownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownButton.swift; sourceTree = "<group>"; };
 		54A46A2226266D00001033AA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		54A46A2A262674F1001033AA /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		54A46A2D262675C7001033AA /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
@@ -196,9 +198,18 @@
 			children = (
 				54B96EC7263B99E000BC27EE /* PetFilterView.swift */,
 				79B037AA258380E600E2046D /* PetRow.swift */,
-				54137FBC2642216700ED33B5 /* DropDownView.swift */,
+				549A83A92644F3A600CB861E /* Dropdown */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		549A83A92644F3A600CB861E /* Dropdown */ = {
+			isa = PBXGroup;
+			children = (
+				54137FBC2642216700ED33B5 /* DropdownView.swift */,
+				549A83AA2644F3C500CB861E /* DropdownButton.swift */,
+			);
+			path = Dropdown;
 			sourceTree = "<group>";
 		};
 		54A46A2526266D09001033AA /* Authentication */ = {
@@ -617,6 +628,7 @@
 				79CA6E182594808D001E2FCF /* ServerPetTypes.swift in Sources */,
 				791F4E432581F9A000C5F457 /* SettingsView.swift in Sources */,
 				7923467725761564005E2644 /* ClearButtonStyle.swift in Sources */,
+				549A83AB2644F3C500CB861E /* DropdownButton.swift in Sources */,
 				54AB30E02629165B00A801F5 /* AlertMessage.swift in Sources */,
 				54A46A2E262675C7001033AA /* UserDefaults+Extensions.swift in Sources */,
 				7962EBFF258C97F400322283 /* ThemeManager.swift in Sources */,
@@ -631,7 +643,7 @@
 				695B350824D7022E00A15D26 /* PetResponse.swift in Sources */,
 				797A0EC925ACA2FB00E40F9E /* PetTypeScrollView.swift in Sources */,
 				697E7D7224E954950039EBF2 /* LottieView.swift in Sources */,
-				54137FBD2642216700ED33B5 /* DropDownView.swift in Sources */,
+				54137FBD2642216700ED33B5 /* DropdownView.swift in Sources */,
 				79B037A825837DE600E2046D /* Animal+Extension.swift in Sources */,
 				79316A52258C8F0E003A40F7 /* Constants.swift in Sources */,
 				54AB30D32629038F00A801F5 /* AuthFormView.swift in Sources */,

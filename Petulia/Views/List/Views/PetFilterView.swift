@@ -9,34 +9,58 @@
 import SwiftUI
 
 struct PetFilterView: View {
-    var body: some View {
-      HStack {
-        Button(action: buttonTapped, label: {
-          Text("Sort By") //distance, size, date,
-        })
+  
+  @State var showStoreDropDown: Bool = false
+  let sortByOptions = [
+    DropdownOption(title: "Distance"),
+    DropdownOption(title: "Date"),
+  ]
+  let ageOptions = [
+    DropdownOption(title: "Baby"),
+    DropdownOption(title: "Young"),
+    DropdownOption(title: "Adult"),
+    DropdownOption(title: "Senior"),
+  ]
+  let genderOptions = [
+    DropdownOption(title: "Male"),
+    DropdownOption(title: "Female"),
+  ]
+  let sizeOptions = [
+    DropdownOption(title: "Small"),
+    DropdownOption(title: "Medium"),
+    DropdownOption(title: "Large"),
+    DropdownOption(title: "XLarge"),
+  ]
+  
+  let onSelect = { key in
+    print("selected key:", key)
+  }
+  
+  var body: some View {
+    HStack {
+      DropdownButton(displayText: .constant("Sort By"), options: sortByOptions, onSelect: onSelect)
+        .fixedSize(horizontal: true, vertical: true)
         .frame(maxWidth: .infinity)
-        Button(action: buttonTapped, label: {
-          Text("Age") //Young
-        })
+      DropdownButton(displayText: .constant("Age"), options: ageOptions, onSelect: onSelect)
+        .fixedSize(horizontal: true, vertical: true)
         .frame(maxWidth: .infinity)
-        Button(action: buttonTapped, label: {
-          Text("Gender") //Female
-        })
+      DropdownButton(displayText: .constant("Gender"), options: genderOptions, onSelect: onSelect)
+        .fixedSize(horizontal: true, vertical: true)
         .frame(maxWidth: .infinity)
-        Button(action: buttonTapped, label: {
-          Text("Size") //Medium
-        })
+      DropdownButton(displayText: .constant("Size"), options: sizeOptions, onSelect: onSelect)
+        .fixedSize(horizontal: true, vertical: true)
         .frame(maxWidth: .infinity)
-      }
     }
+  }
   
   func buttonTapped() {
     print("Tapped!")
+    showStoreDropDown.toggle()
   }
 }
 
 struct PetFilterView_Previews: PreviewProvider {
-    static var previews: some View {
-        PetFilterView()
-    }
+  static var previews: some View {
+    PetFilterView()
+  }
 }
