@@ -13,7 +13,7 @@ struct PetFilterView: View {
   @State var showStoreDropDown: Bool = false
   let sortByOptions = [
     DropdownOption(title: "Distance"),
-    DropdownOption(title: "Date"),
+    DropdownOption(title: "Date", isSelected: true),
   ]
   let ageOptions = [
     DropdownOption(title: "Baby"),

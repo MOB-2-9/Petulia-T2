@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DropdownOption: Hashable {
   var title: String
-//  var isSelected: Bool
+  var isSelected: Bool = false
 //  var val: String
   public static func == (lhs: DropdownOption, rhs: DropdownOption) -> Bool {
     return lhs.title == rhs.title
