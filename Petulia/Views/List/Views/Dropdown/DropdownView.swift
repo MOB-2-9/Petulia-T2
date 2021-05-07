@@ -15,11 +15,12 @@ struct DropdownView: View {
   
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
-      ForEach(self.options, id: \.self) { option in
-        DropdownOptionCell(title: option.title, onSelect: onSelect)
+      ForEach(0..<options.count, id: \.self) { index in
+//        DropdownOptionCell(title: option.title, onSelect: onSelect)
+        let option = options[index]
+        DropdownOptionCell(option: option, onSelect: onSelect)
       }
     }
-    
     .background(Color.white)
     .cornerRadius(dropdownCornerRadius)
     .overlay(
@@ -30,20 +31,26 @@ struct DropdownView: View {
 }
 
 struct DropdownOptionCell: View {
-  var title: String
+  var option: DropdownOption
+//  var title: String
 //  var key: String
   var onSelect: ((_ key: String) -> Void)?
   
   var body: some View {
     Button(action: {
       if let onSelect = self.onSelect {
-        onSelect(self.title)
+        onSelect(option.title)
+//        self.option.isSelected.toggle()
       }
     }) {
-      Text(self.title)
+      Text(option.title)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
-    //        .padding(.horizontal, 20)
-    .frame(maxWidth: .infinity)
+//    .padding(.horizontal, 20)
+//    .frame(maxWidth: .infinity)
     .padding(.vertical, 5)
+    .background(
+      option.isSelected ? Color.gray : Color.clear
+    )
   }
 }
