@@ -10,13 +10,7 @@ import Foundation
 import SwiftUI
 
 struct ProfileView: View {
-  
   var body: some View{
-    Image(systemName: "tortoise")
-      .foregroundColor(.white)
-      .imageScale(.large)
-    Text("Pets")
-      .foregroundColor(.white)
-      .font(.headline)
+    Text("This is the Profile View")
   }
 }

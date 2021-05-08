@@ -19,11 +19,14 @@ struct HomeView: View {
   @State private var typing = false
   @State private var showSettingsSheet = false
   @State var showMenu = false
-  @StateObject var viewRouter = ViewRouter()
+  
+  @StateObject var viewRouter : ViewRouter
+  //@State var currentPage: Page = .pets
   
   private var filteredPets: [PetDetailViewModel] {
     return petDataController.allPets
   }
+  
   
   var body: some View {
     
@@ -36,7 +39,7 @@ struct HomeView: View {
         }
       }
     
-    NavigationView {
+    return NavigationView {
       GeometryReader { geometry in
         ZStack(alignment: .leading){
           VStack {
@@ -60,7 +63,7 @@ struct HomeView: View {
           BackgroundMenuView()
             .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
             .animation(.easeInOut(duration: 0.2))
-          MenuView()
+          NavigationHamburgerMenu(viewRouter: viewRouter)
             .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
             .animation(.interactiveSpring(response: 0.6,
                                           dampingFraction: 0.5, blendDuration: 0.5))
@@ -83,8 +86,11 @@ struct HomeView: View {
               .imageScale(.large)
           }
         })
-      ), trailing: HStack { settingsControlView() })
+      ),
+      trailing: HStack { settingsControlView() }
+      )
     }
+    
     .onAppear { requestWebData() } // Assures data at startup
     .navigationViewStyle(StackNavigationViewStyle()) // Solves the double column bug
     .accentColor(theme.accentColor)

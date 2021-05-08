@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SignupView: View {
-  
+  @State var viewRouter: ViewRouter
   @ObservedObject var viewModel: AuthenticationViewModel
   
   var body: some View {
@@ -28,7 +28,7 @@ struct SignupView: View {
 //MARK: Preview
 struct SignupView_Previews: PreviewProvider {
   static var previews: some View {
-    SignupView(viewModel: AuthenticationViewModel(authType: .signup))
+    SignupView(viewRouter: ViewRouter(), viewModel: AuthenticationViewModel(authType: .signup))
   }
 }
 
@@ -65,7 +65,7 @@ extension SignupView {
       let petDataController = PetDataController()
       let favoriteController = FavoriteController()
       let themeManager = ThemeManager()
-      let rootView = HomeView()
+      let rootView = HomeView(viewRouter: ViewRouter())
         .environmentObject(petDataController)
         .environmentObject(favoriteController)
         .environmentObject(themeManager)

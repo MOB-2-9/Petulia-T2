@@ -10,13 +10,7 @@ import Foundation
 import SwiftUI
 
 struct WelfareOrganization: View {
-  
   var body: some View{
-    Image(systemName: "tortoise")
-      .foregroundColor(.white)
-      .imageScale(.large)
-    Text("Pets")
-      .foregroundColor(.white)
-      .font(.headline)
+    Text("This is the Welfare view")
   }
 }

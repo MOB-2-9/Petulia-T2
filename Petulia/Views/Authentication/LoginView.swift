@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LoginView: View {
-  
+  //@State var viewRouter: ViewRouter
   @ObservedObject var viewModel: AuthenticationViewModel
   
   var body: some View {
@@ -61,11 +61,12 @@ extension LoginView {
   }
   
   func goToHomePage() {
+    
     withAnimation {
       let petDataController = PetDataController()
       let favoriteController = FavoriteController()
       let themeManager = ThemeManager()
-      let rootView = HomeView()
+      let rootView = HomeView(viewRouter: ViewRouter())
         .environmentObject(petDataController)
         .environmentObject(favoriteController)
         .environmentObject(themeManager)
