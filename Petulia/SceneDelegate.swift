@@ -57,17 +57,18 @@ extension SceneDelegate {
     guard let windowScene = scene as? UIWindowScene else { return }
     let window = UIWindow(windowScene: windowScene)
     if Customer.current == nil {
-      window.rootViewController = UIHostingController(rootView: AuthView(viewRouter: viewRouter))
+      window.rootViewController = UIHostingController(rootView: AuthView())
     } else {
       //user exist
       let petDataController = PetDataController()
       let favoriteController = FavoriteController()
       let themeManager = ThemeManager()
-      let homeView = HomeView(viewRouter: self.viewRouter)
+      let starterView = StarterView(viewRouter: self.viewRouter)
+      //let homeView = HomeView()
         .environmentObject(petDataController)
         .environmentObject(favoriteController)
         .environmentObject(themeManager)
-      window.rootViewController = UIHostingController(rootView: homeView)
+      window.rootViewController = UIHostingController(rootView: starterView)
     }
     self.window = window
     window.makeKeyAndVisible()

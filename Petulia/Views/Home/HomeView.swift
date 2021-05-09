@@ -19,28 +19,14 @@ struct HomeView: View {
   @State private var typing = false
   @State private var showSettingsSheet = false
   @State var showMenu = false
-  
-  @StateObject var viewRouter : ViewRouter
-  //@State var currentPage: Page = .pets
-  
+
   private var filteredPets: [PetDetailViewModel] {
     return petDataController.allPets
   }
   
-  
   var body: some View {
     
-    let drag = DragGesture()
-      .onEnded {
-        if $0.translation.width < -100 {
-          withAnimation {
-            self.showMenu = false
-          }
-        }
-      }
-    
     return NavigationView {
-      GeometryReader { geometry in
         ZStack(alignment: .leading){
           VStack {
             ScrollView(.vertical, showsIndicators: false) {
@@ -58,37 +44,7 @@ struct HomeView: View {
                 }
               }
           }
-          ClearBackground()
-            .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
-          BackgroundMenuView()
-            .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
-            .animation(.easeInOut(duration: 0.2))
-          NavigationHamburgerMenu(viewRouter: viewRouter)
-            .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
-            .animation(.interactiveSpring(response: 0.6,
-                                          dampingFraction: 0.5, blendDuration: 0.5))
-          Spacer()
         }
-          .gesture(drag)
-      }
-      .navigationBarTitle("Petulia", displayMode: .large)
-      .navigationBarItems(leading: (
-        Button(action: {
-          self.showMenu.toggle()
-          
-        }, label: {
-          
-          if self.showMenu{
-            Image(systemName: "multiply").font(.body).foregroundColor(.white)
-              .imageScale(.large)
-          } else{
-            Image(systemName: "line.horizontal.3")
-              .imageScale(.large)
-          }
-        })
-      ),
-      trailing: HStack { settingsControlView() }
-      )
     }
     
     .onAppear { requestWebData() } // Assures data at startup

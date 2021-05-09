@@ -66,7 +66,7 @@ extension LoginView {
       let petDataController = PetDataController()
       let favoriteController = FavoriteController()
       let themeManager = ThemeManager()
-      let rootView = HomeView(viewRouter: ViewRouter())
+      let rootView = HomeView()
         .environmentObject(petDataController)
         .environmentObject(favoriteController)
         .environmentObject(themeManager)

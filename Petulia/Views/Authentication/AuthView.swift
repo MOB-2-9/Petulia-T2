@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct AuthView: View {
-  @State var viewRouter: ViewRouter
   
   @State var isLogin = false
   @State var isSignup = false
@@ -28,7 +27,7 @@ struct AuthView: View {
         NavigationLink(destination: LoginView(viewModel: AuthenticationViewModel(authType: .login)), isActive: $isLogin, label: {
           EmptyView()
         })
-        NavigationLink(destination: SignupView(viewRouter: viewRouter, viewModel: AuthenticationViewModel(authType: .signup)), isActive: $isSignup, label: {
+        NavigationLink(destination: SignupView(viewModel: AuthenticationViewModel(authType: .signup)), isActive: $isSignup, label: {
           EmptyView()
         })
       }
@@ -91,7 +90,7 @@ extension AuthView {
 //MARK: Preview
 struct AuthView_Previews: PreviewProvider {
   static var previews: some View {
-    AuthView(viewRouter: ViewRouter())
+    AuthView()
   }
 }
 

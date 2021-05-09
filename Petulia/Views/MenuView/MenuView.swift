@@ -9,121 +9,15 @@
 import Foundation
 import SwiftUI
 
-struct MenuView: View {
-  @EnvironmentObject var theme: ThemeManager
-  @StateObject var viewRouter : ViewRouter
-  
-  var body: some View {
-    VStack(alignment: .leading, spacing: 15) {
-      HStack {
-        Button(action: {
-            withAnimation {
-              viewRouter.currentPage = .pets
-            }
-        }) {
-          Image(systemName: "tortoise")
-            .foregroundColor(.white)
-            .imageScale(.large)
-          Text("Pets")
-            .foregroundColor(.white)
-            .font(.headline)
-        }
-    }
-      .padding(.top, 140)
-      HStack {
-        Button(action: {
-          withAnimation {
-            viewRouter.currentPage = .welfare
-          }
-        }){
-        Image(systemName: "globe")
-          .foregroundColor(.white)
-          .imageScale(.large)
-        Text("Welfare")
-          .foregroundColor(.white)
-          .font(.headline)
-        }
-      }
-      .padding(.top, 20)
-      HStack {
-        Button(action: {
-          withAnimation {
-            viewRouter.currentPage = .profile
-          }
-        }){
-        Image(systemName: "person")
-          .foregroundColor(.white)
-          .imageScale(.large)
-        Text("Profile")
-          .foregroundColor(.white)
-          .font(.headline)
-        }
-      }
-      .padding(.top, 20)
-      Spacer()
-    }
-    .padding()
-    .frame(maxWidth: UIScreen.main.bounds.width/2, alignment: .leading)
-    .background(theme.accentColor)
-    .edgesIgnoringSafeArea(.all)
-  }
-}
-
-struct BackgroundMenuView: View {
-  
-  @EnvironmentObject var theme: ThemeManager
-  
-  var body: some View {
-    VStack(alignment: .leading, spacing: 15) {
-    HStack {
-      Image(systemName: "person")
-        .foregroundColor(theme.accentColor)
-        .imageScale(.large)
-      Text("Profile")
-        .foregroundColor(theme.accentColor)
-        .font(.headline)
-    }
-    .padding(.top, 20)
-    Spacer()
-  }
-  .padding()
-  .frame(maxWidth: UIScreen.main.bounds.width/2, alignment: .leading)
-  .background(theme.accentColor)
-  .edgesIgnoringSafeArea(.all)
-  }
-}
-
-struct ClearBackground: View {
-  
-  @EnvironmentObject var theme: ThemeManager
-  
-  var body: some View {
-    VStack(alignment: .leading, spacing: 15) {
-    HStack {
-      Image(systemName: "person")
-        .foregroundColor(Color.gray.opacity(0.5))
-        .imageScale(.large)
-      Text("Profile")
-        .foregroundColor(Color.gray.opacity(0.5))
-        .font(.headline)
-    }
-    .padding(.top, 20)
-    Spacer()
-  }
-  .padding()
-  .frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
-  .background(Color.gray.opacity(0.5))
-  .edgesIgnoringSafeArea(.all)
-  }
-}
-
-struct NavigationHamburgerMenu: View{
+struct NavigationHamburgerMenu: View {
   @EnvironmentObject var theme: ThemeManager
   @StateObject var viewRouter: ViewRouter
   @State var showMenu = false
+  @State private var showSettingsSheet = false
+  @AppStorage(Keys.savedPostcode) var postcode = ""
+  @EnvironmentObject var petDataController: PetDataController
   
     var body: some View{
-      
       let drag = DragGesture()
         .onEnded {
           if $0.translation.width < -100 {
@@ -137,7 +31,7 @@ struct NavigationHamburgerMenu: View{
                 ZStack(alignment: .leading, content: {
                   switch viewRouter.currentPage {
                   case .pets:
-                    HomeView(viewRouter: viewRouter)
+                    HomeView()
                       .frame(width: geometry.size.width, height: geometry.size.height)
                   case .welfare:
                     WelfareOrganization()
@@ -146,13 +40,18 @@ struct NavigationHamburgerMenu: View{
                     ProfileView()
                       .frame(width: geometry.size.width, height: geometry.size.height)
                   case .logout:
-                    LoginView(viewModel: AuthenticationViewModel(authType: .login))
+                    AuthView()
                       .frame(width: geometry.size.width, height: geometry.size.height)
-                  case .home:
+                  case .generic:
                     EmptyView()
                       .transition(.scale)
-
                   }
+                  ClearBackground()
+                    .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
+                  BackgroundMenuView()
+                    .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
+                    .animation(.linear)
+                  
                     VStack(alignment: .leading, spacing: 15) {
                         HStack {
                             Button(action: {
@@ -180,7 +79,7 @@ struct NavigationHamburgerMenu: View{
                                 }
                             }){
                                 Image(systemName: "globe")
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(.white)
                                     .imageScale(.large)
                                 Text("Welfare")
                                     .foregroundColor(.white)
@@ -204,8 +103,21 @@ struct NavigationHamburgerMenu: View{
                         }
                       }
                       .padding(.top, 20)
+                      HStack {
+                        Button(action: {
+                          withAnimation {
+                            viewRouter.currentPage = .logout
+                            showMenu = false
+                          }
+                        }){
+                        Text("Log Out")
+                          .foregroundColor(.white)
+                          .font(.headline)
+                        }
+                      }
+                      .padding(.top, 20)
                         Spacer()
-                    }.gesture(drag)
+                    }
                     .padding()
                     .frame(maxWidth: UIScreen.main.bounds.width/2, alignment: .leading)
                     .background(theme.accentColor)
@@ -214,24 +126,81 @@ struct NavigationHamburgerMenu: View{
                         .animation(.interactiveSpring(response: 0.6,
                                                       dampingFraction: 0.5, blendDuration: 0.5))
                 })
+                .gesture(drag)
             }
+            .navigationBarTitle("Petulia", displayMode: .large)
             .navigationBarItems(leading: (
-                Button(action: {
-                    self.showMenu.toggle()
-                }, label: {
-
-                    if self.showMenu{
-                        Image(systemName: "multiply").font(.body).foregroundColor(.blue)
-                            .imageScale(.large)
-                    } else{
-                        Image(systemName: "line.horizontal.3").font(.body).foregroundColor(.blue)
-
-                            .imageScale(.large)
-                    }
-                })
-            ))
+              Button(action: {
+                self.showMenu.toggle()
+              }, label: {
+                if self.showMenu{
+                  Image(systemName: "multiply").font(.body).foregroundColor(.white)
+                    .imageScale(.large)
+                } else{
+                  Image(systemName: "line.horizontal.3").foregroundColor(theme.accentColor)
+                    .imageScale(.large)
+                }
+              })
+            ),
+            trailing: HStack { settingsControlView().foregroundColor(theme.accentColor) }
+            )
         }
     }
+}
+
+struct BackgroundMenuView: View {
+  
+  @EnvironmentObject var theme: ThemeManager
+  @AppStorage(Keys.savedPostcode) var postcode = ""
+  @EnvironmentObject var petDataController: PetDataController
+  
+  var body: some View {
+    VStack(alignment: .leading, spacing: 15) {
+    HStack {
+      Text("Place holder")
+        .foregroundColor(theme.accentColor)
+        .font(.headline)
+    }
+    .padding(.top, 20)
+    Spacer()
+  }
+  .padding()
+  .frame(maxWidth: UIScreen.main.bounds.width/2, alignment: .leading)
+  .background(theme.accentColor)
+  .edgesIgnoringSafeArea(.all)
+  }
+}
+
+struct ClearBackground: View {
+  
+  @EnvironmentObject var theme: ThemeManager
+  
+  var body: some View {
+    VStack(alignment: .leading, spacing: 15) {
+    HStack {
+      Text("Place holder")
+        .foregroundColor(Color.gray.opacity(0.5))
+        .font(.headline)
+    }
+    .padding(.top, 20)
+    Spacer()
+  }
+  .padding()
+  .frame(maxWidth: UIScreen.main.bounds.width, alignment: .leading)
+  .background(Color.gray.opacity(0.5))
+  .edgesIgnoringSafeArea(.all)
+  }
+}
+
+private extension NavigationHamburgerMenu{
+  func requestWebData() {
+    self.petDataController.requestPets(around: postcode.isEmpty ? nil : postcode)
+  }
+  func settingsControlView() -> some View {
+    SettingsButton(presentation: $showSettingsSheet) {
+      requestWebData()
+    }
+  }
 }
 
 enum Page {
@@ -239,17 +208,11 @@ enum Page {
   case welfare
   case profile
   case logout
-  case home
+  case generic
   
 }
 
 class ViewRouter: ObservableObject {
-  @Published var currentPage: Page = .home
+  @Published var currentPage: Page = .pets
   
-}
-
-struct MenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        MenuView(viewRouter: ViewRouter())
-    }
 }
