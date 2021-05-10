@@ -19,7 +19,7 @@ struct HomeView: View {
   @State private var typing = false
   @State private var showSettingsSheet = false
   @State var showMenu = false
-
+  
   private var filteredPets: [PetDetailViewModel] {
     return petDataController.allPets
   }
@@ -27,24 +27,24 @@ struct HomeView: View {
   var body: some View {
     
     return NavigationView {
-        ZStack(alignment: .leading){
-          VStack {
-            ScrollView(.vertical, showsIndicators: false) {
-              VStack {
-                filterView().padding(.top)
-                petTypeScrollView()
-                recentPetSectionView()
-                favoritesSectionView()
-              }
-              .padding(.bottom)
+      ZStack(alignment: .leading){
+        VStack {
+          ScrollView(.vertical, showsIndicators: false) {
+            VStack {
+              filterView().padding(.top)
+              petTypeScrollView()
+              recentPetSectionView()
+              favoritesSectionView()
             }
-              if typing {
-                KeyboardToolBarView() {
-                  requestWebData()
-                }
-              }
+            .padding(.bottom)
+          }
+          if typing {
+            KeyboardToolBarView() {
+              requestWebData()
+            }
           }
         }
+      }
     }
     
     .onAppear { requestWebData() } // Assures data at startup
@@ -54,8 +54,6 @@ struct HomeView: View {
     .alert(with: $favorites.errorMessage)
   }
 }
-
-
 
 private extension HomeView {
   //MARK: - Methods

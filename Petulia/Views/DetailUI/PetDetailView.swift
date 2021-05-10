@@ -12,10 +12,8 @@ import MessageUI
 import MapKit
 
 struct PetDetailView: View {
-  
   var viewModel: PetDetailViewModel
   var addressLocation: Address?
-  //var address1: address
   @EnvironmentObject var favorites: FavoriteController
   @EnvironmentObject var theme: ThemeManager // to pass to sheets.
   @AppStorage(Keys.isDark) var isDark = false

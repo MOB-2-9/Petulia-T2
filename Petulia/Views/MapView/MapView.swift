@@ -16,20 +16,15 @@ struct MapView: UIViewRepresentable {
   var address: String
   var locationManager = CLLocationManager()
   @State var coordinate = CLLocationCoordinate2D()
-  //@Binding var pins: [Pin]
   
   func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
     setupManager()
     let mapView = MKMapView(frame: .zero)
-     //mapView.userTrackingMode = .follow
     return mapView
     
   }
   
   func updateUIView(_ uiView: MKMapView, context: Context) {
-    
-    //let location = address.address1
-    //uiView.addAnnotation(pins as! MKAnnotation)
     setupManager()
     coordinates(forAddress: address) { (location) in
       guard let location = location else {
@@ -43,8 +38,6 @@ struct MapView: UIViewRepresentable {
       let annotation = MKPointAnnotation()
       annotation.coordinate = coordinate
     }
-    
-    
   }
   
   func setupManager(){

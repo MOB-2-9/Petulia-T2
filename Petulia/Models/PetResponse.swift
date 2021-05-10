@@ -195,7 +195,6 @@ struct Contact: Codable {
     self.address = address
   }
   
-  
   var asDictionary: [String: Any] {
     get {
       return [

@@ -9,22 +9,15 @@
 import SwiftUI
 
 struct SettingsView: View {
-  //@Environment(\.presentationMode) var presentationMode
+  @Environment(\.presentationMode) var presentationMode
   @EnvironmentObject var theme: ThemeManager
   
   var action: ((_: Bool)->())?
-  @State private var isDirty = false
-  
   @AppStorage(Keys.savedPostcode) var postcode = ""
-  
+  @State private var isDirty = false
   @State private var typing = false
-  
   @State private var accent = Color.pink
   @State private var showColorPicker = false
-
-  //@State var currentPage: Page = .homeView
-
-  //@State var viewRouter: ViewRouter
   
   var body: some View {
     ZStack (alignment: .bottom) {
@@ -75,7 +68,7 @@ private extension SettingsView {
         
         Button(action: {
           self.hideKeyboard()
-          //presentationMode.wrappedValue.dismiss()
+          presentationMode.wrappedValue.dismiss()
           
         }) {
           Image(systemName: "xmark.circle.fill")

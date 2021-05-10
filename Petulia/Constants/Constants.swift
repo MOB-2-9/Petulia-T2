@@ -79,5 +79,4 @@ extension AnimalKeys {
     static let phone = "phone"
     static let address = "address"
   }
-
 }
