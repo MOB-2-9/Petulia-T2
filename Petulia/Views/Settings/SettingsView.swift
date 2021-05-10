@@ -14,11 +14,12 @@ struct SettingsView: View {
   
   var action: ((_: Bool)->())?
   @AppStorage(Keys.savedPostcode) var postcode = ""
+  @AppStorage(Keys.showOnlyPostWithImages) var showOnlyPetsWithImages = false
   @State private var isDirty = false
   @State private var typing = false
   @State private var accent = Color.pink
   @State private var showColorPicker = false
-  
+    
   var body: some View {
     ZStack (alignment: .bottom) {
       VStack {
@@ -90,6 +91,7 @@ private extension SettingsView {
       .keyboardType(.phonePad)
       .disableAutocorrection(true)
       
+      Toggle("Only pets with pictures", isOn: $showOnlyPetsWithImages)
     }
   }
   

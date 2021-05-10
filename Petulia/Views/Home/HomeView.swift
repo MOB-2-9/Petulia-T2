@@ -15,12 +15,16 @@ struct HomeView: View {
   
   @AppStorage(Keys.savedPostcode) var postcode = ""
   @AppStorage(Keys.isDark) var isDark = false
+  @AppStorage(Keys.showOnlyPostWithImages) var showOnlyPetsWithImages = false
   
   @State private var typing = false
   @State private var showSettingsSheet = false
   @State var showMenu = false
   
-  private var filteredPets: [PetDetailViewModel] {
+  var filteredPets: [PetDetailViewModel] {
+    if showOnlyPetsWithImages {
+      return petDataController.allPets.filter { $0.photos.count > 0 }
+    }
     return petDataController.allPets
   }
   
