@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct LoginView: View {
-  
   @ObservedObject var viewModel: AuthenticationViewModel
   
   var body: some View {
@@ -61,6 +60,7 @@ extension LoginView {
   }
   
   func goToHomePage() {
+    
     withAnimation {
       let petDataController = PetDataController()
       let favoriteController = FavoriteController()

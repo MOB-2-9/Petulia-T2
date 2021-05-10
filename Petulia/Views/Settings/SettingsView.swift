@@ -13,13 +13,10 @@ struct SettingsView: View {
   @EnvironmentObject var theme: ThemeManager
   
   var action: ((_: Bool)->())?
-  @State private var isDirty = false
-  
   @AppStorage(Keys.savedPostcode) var postcode = ""
   @AppStorage(Keys.showOnlyPostWithImages) var showOnlyPetsWithImages = false
-  
+  @State private var isDirty = false
   @State private var typing = false
-  
   @State private var accent = Color.pink
   @State private var showColorPicker = false
     

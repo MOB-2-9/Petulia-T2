@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct SignupView: View {
-  
   @ObservedObject var viewModel: AuthenticationViewModel
   
   var body: some View {

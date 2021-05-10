@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-
 struct SettingsButton: View {
   @EnvironmentObject var theme: ThemeManager
   @Binding var presentation: Bool

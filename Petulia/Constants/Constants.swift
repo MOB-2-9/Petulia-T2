@@ -77,5 +77,6 @@ extension AnimalKeys {
   enum Contact {
     static let email = "email"
     static let phone = "phone"
+    static let address = "address"
   }
 }

@@ -24,7 +24,7 @@ struct Animal: Codable, Identifiable {
   let photos: [Photo]?
   let distance: Double?
   let breeds: Breed?
-  let contact: Contact
+  let contact: Contact?
   
   enum CodingKeys: String, CodingKey {
     case id
@@ -181,22 +181,26 @@ extension Attributes {
 struct Contact: Codable {
   let email: String?
   let phone: String?
+  let address: Address?
   
   init(dic: [String: Any]) {
     self.email = dic[AnimalKeys.Contact.email] as? String
     self.phone = dic[AnimalKeys.Contact.phone] as? String
+    self.address = (dic[AnimalKeys.Contact.address] as? Address)
   }
-  
-  init(email: String, phone: String) {
+
+  init(email: String, phone: String, address: Address) {
     self.email = email
     self.phone = phone
+    self.address = address
   }
   
-  var asDictionary: [String: String] {
+  var asDictionary: [String: Any] {
     get {
       return [
         AnimalKeys.Contact.email: email ?? "",
         AnimalKeys.Contact.phone: phone ?? "",
+        AnimalKeys.Contact.address: address ?? "",
       ]
     }
   }
