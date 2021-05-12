@@ -11,6 +11,10 @@
 		1B2A0B3C26423F5B00ECFB27 /* WelfareOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A0B3B26423F5B00ECFB27 /* WelfareOrganization.swift */; };
 		1B2A0B3F2642407200ECFB27 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A0B3E2642407200ECFB27 /* ProfileView.swift */; };
 		1B94E84D26487EDF000462D9 /* StarterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94E84C26487EDF000462D9 /* StarterView.swift */; };
+		1B94E850264B6483000462D9 /* Subview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94E84F264B6483000462D9 /* Subview.swift */; };
+		1B94E852264B686B000462D9 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94E851264B686B000462D9 /* OnboardingView.swift */; };
+		1B94E854264B6CDA000462D9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94E853264B6CDA000462D9 /* PageViewController.swift */; };
+		1B94E856264B6E90000462D9 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94E855264B6E90000462D9 /* PageControl.swift */; };
 		1BEECF9C263B81FD009849E0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEECF9B263B81FD009849E0 /* MapView.swift */; };
 		5447E4F8262657A3009EAB80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */; };
 		54A46A2326266D00001033AA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2226266D00001033AA /* LoginView.swift */; };
@@ -91,6 +95,10 @@
 		1B2A0B3B26423F5B00ECFB27 /* WelfareOrganization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareOrganization.swift; sourceTree = "<group>"; };
 		1B2A0B3E2642407200ECFB27 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1B94E84C26487EDF000462D9 /* StarterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterView.swift; sourceTree = "<group>"; };
+		1B94E84F264B6483000462D9 /* Subview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subview.swift; sourceTree = "<group>"; };
+		1B94E851264B686B000462D9 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		1B94E853264B6CDA000462D9 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		1B94E855264B6E90000462D9 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		1BEECF74263B38E7009849E0 /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info.plist"; sourceTree = "<group>"; };
 		1BEECF9B263B81FD009849E0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -211,6 +219,17 @@
 				1B2A0B3E2642407200ECFB27 /* ProfileView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		1B94E84E264B645F000462D9 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1B94E84F264B6483000462D9 /* Subview.swift */,
+				1B94E851264B686B000462D9 /* OnboardingView.swift */,
+				1B94E853264B6CDA000462D9 /* PageViewController.swift */,
+				1B94E855264B6E90000462D9 /* PageControl.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		1BEECF9A263B81B9009849E0 /* MapView */ = {
@@ -396,6 +415,7 @@
 		69E4432224E87DAE00B8B3F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1B94E84E264B645F000462D9 /* Onboarding */,
 				1B2A0B3D2642406000ECFB27 /* Profile */,
 				1B2A0B38264224F500ECFB27 /* MenuView */,
 				1B2A0B372642209200ECFB27 /* Organization */,
@@ -648,11 +668,13 @@
 				54A46A2326266D00001033AA /* LoginView.swift in Sources */,
 				7965DDC7257A33F700829328 /* AdoptionFeedbackView.swift in Sources */,
 				69E4432524E8820C00B8B3F1 /* PetDetailViewModel.swift in Sources */,
+				1B94E856264B6E90000462D9 /* PageControl.swift in Sources */,
 				79CA6E182594808D001E2FCF /* ServerPetTypes.swift in Sources */,
 				791F4E432581F9A000C5F457 /* SettingsView.swift in Sources */,
 				7923467725761564005E2644 /* ClearButtonStyle.swift in Sources */,
 				54AB30E02629165B00A801F5 /* AlertMessage.swift in Sources */,
 				54A46A2E262675C7001033AA /* UserDefaults+Extensions.swift in Sources */,
+				1B94E852264B686B000462D9 /* OnboardingView.swift in Sources */,
 				7962EBFF258C97F400322283 /* ThemeManager.swift in Sources */,
 				79F93581258B75BF00C9CDCD /* ColoredLabeStyle.swift in Sources */,
 				791F4E46258217CC00C5F457 /* Color+Extension.swift in Sources */,
@@ -675,10 +697,12 @@
 				6962D2A024E2CB3B00772A61 /* ActivityIndicator.swift in Sources */,
 				79F9357D258B3D2E00C9CDCD /* AsyncGalleryView.swift in Sources */,
 				794FEAD3259C87F60010B381 /* KeyboardToolBarView.swift in Sources */,
+				1B94E854264B6CDA000462D9 /* PageViewController.swift in Sources */,
 				794E2CDA25AB444600234FDA /* RetryCard.swift in Sources */,
 				695B34F224D6CA1500A15D26 /* AppDelegate.swift in Sources */,
 				796E0ABD25862E72002E0007 /* EndPoint.swift in Sources */,
 				7930A4B42567F67E00746ADE /* StreachingHeader.swift in Sources */,
+				1B94E850264B6483000462D9 /* Subview.swift in Sources */,
 				79729C25257903F400C7531C /* MailView.swift in Sources */,
 				7982A4942570FF28005334DD /* PetTypeController.swift in Sources */,
 				695B34F424D6CA1500A15D26 /* SceneDelegate.swift in Sources */,
