@@ -136,6 +136,40 @@ enum Size: String, Codable {
 struct Address: Codable {
   let address1, address2, city, state: String?
   let postcode, country: String?
+  var asDictionary: [String: Any] {
+    get {
+      var dic: [String: Any] = [:]
+      //TODO
+      if let address1 = address1 {
+        dic[AnimalKeys.Contact.Address.address1] = address1
+      }
+      if let address2 = address2 {
+        dic[AnimalKeys.Contact.Address.address2] = address2
+      }
+      if let city = city {
+        dic[AnimalKeys.Contact.Address.city] = city
+      }
+      if let state = state {
+        dic[AnimalKeys.Contact.Address.state] = state
+      }
+      if let postcode = postcode {
+        dic[AnimalKeys.Contact.Address.postcode] = postcode
+      }
+      if let country = country {
+        dic[AnimalKeys.Contact.Address.country] = country
+      }
+      return dic
+    }
+  }
+  
+  init(dic: [String: String]) {
+    self.address1 = dic[AnimalKeys.Contact.Address.address1]
+    self.address2 = dic[AnimalKeys.Contact.Address.address2]
+    self.city = dic[AnimalKeys.Contact.Address.city]
+    self.state = dic[AnimalKeys.Contact.Address.state]
+    self.postcode = dic[AnimalKeys.Contact.Address.postcode]
+    self.country = dic[AnimalKeys.Contact.Address.country]
+  }
 }
 
 struct Breed: Codable {
@@ -183,10 +217,29 @@ struct Contact: Codable {
   let phone: String?
   let address: Address?
   
+  var asDictionary: [String: Any] {
+    get {
+      var dic: [String: Any] = [
+        AnimalKeys.Contact.email: email ?? "",
+        AnimalKeys.Contact.phone: phone ?? "",
+
+      ]
+      if let address = address {
+        dic[AnimalKeys.Contact.address] = address.asDictionary
+      }
+      return dic
+    }
+  }
+  
+  
   init(dic: [String: Any]) {
     self.email = dic[AnimalKeys.Contact.email] as? String
     self.phone = dic[AnimalKeys.Contact.phone] as? String
-    self.address = (dic[AnimalKeys.Contact.address] as? Address)
+    if let addressDic = dic[AnimalKeys.Contact.address] as? [String: String] {
+      self.address = Address(dic: addressDic)
+    } else {
+      self.address = nil
+    }
   }
 
   init(email: String, phone: String, address: Address) {
@@ -195,13 +248,5 @@ struct Contact: Codable {
     self.address = address
   }
   
-  var asDictionary: [String: Any] {
-    get {
-      return [
-        AnimalKeys.Contact.email: email ?? "",
-        AnimalKeys.Contact.phone: phone ?? "",
-        AnimalKeys.Contact.address: address ?? "",
-      ]
-    }
-  }
+  
 }

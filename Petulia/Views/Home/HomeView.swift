@@ -29,8 +29,6 @@ struct HomeView: View {
   }
   
   var body: some View {
-    
-    return NavigationView {
       ZStack(alignment: .leading){
         VStack {
           ScrollView(.vertical, showsIndicators: false) {
@@ -49,10 +47,7 @@ struct HomeView: View {
           }
         }
       }
-    }
-    
     .onAppear { requestWebData() } // Assures data at startup
-    .navigationViewStyle(StackNavigationViewStyle()) // Solves the double column bug
     .accentColor(theme.accentColor)
     .preferredColorScheme(isDark ? .dark : .light)
     .alert(with: $favorites.errorMessage)

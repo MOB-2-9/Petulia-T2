@@ -40,9 +40,6 @@ struct NavigationHamburgerMenu: View {
           case .profile:
             ProfileView()
               .frame(width: geometry.size.width, height: geometry.size.height)
-          case .logout:
-            AuthView()
-              .frame(width: geometry.size.width, height: geometry.size.height)
           case .generic:
             EmptyView()
               .transition(.scale)
@@ -107,8 +104,15 @@ struct NavigationHamburgerMenu: View {
             HStack {
               Button(action: {
                 withAnimation {
-                  viewRouter.currentPage = .logout
-                  showMenu = false
+                  CustomerService.signOut { error in
+                    if let error = error {
+                      print("\(error)")
+                      showMenu = false
+                      return
+                    }
+                    let rootVC = UIHostingController(rootView: AuthView())
+                    AppService.initRootView(rootController: rootVC)
+                  }
                 }
               }){
                 Text("Log Out")
@@ -146,6 +150,7 @@ struct NavigationHamburgerMenu: View {
       trailing: HStack { settingsControlView().foregroundColor(theme.accentColor) }
       )
     }
+    .navigationViewStyle(DefaultNavigationViewStyle()) // Solves the double column bug
   }
 }
 
@@ -180,7 +185,7 @@ struct ClearBackground: View {
     VStack(alignment: .leading, spacing: 15) {
       HStack {
         Text("Place holder")
-          .foregroundColor(Color.gray.opacity(0.5))
+          .foregroundColor(Color.clear)
           .font(.headline)
       }
       .padding(.top, 20)
@@ -209,12 +214,9 @@ enum Page {
   case pets
   case welfare
   case profile
-  case logout
   case generic
-  
 }
 
 class ViewRouter: ObservableObject {
   @Published var currentPage: Page = .pets
-  
 }

@@ -11,7 +11,6 @@
 		1B2A0B3C26423F5B00ECFB27 /* WelfareOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A0B3B26423F5B00ECFB27 /* WelfareOrganization.swift */; };
 		1B2A0B3F2642407200ECFB27 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A0B3E2642407200ECFB27 /* ProfileView.swift */; };
 		1B94E84D26487EDF000462D9 /* StarterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94E84C26487EDF000462D9 /* StarterView.swift */; };
-		1BEECF75263B38E7009849E0 /* Petfinder-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BEECF74263B38E7009849E0 /* Petfinder-Info.plist */; };
 		1BEECF9C263B81FD009849E0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEECF9B263B81FD009849E0 /* MapView.swift */; };
 		5447E4F8262657A3009EAB80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */; };
 		54A46A2326266D00001033AA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2226266D00001033AA /* LoginView.swift */; };
@@ -846,7 +845,6 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Petulia/Preview Content\"";
 				DEVELOPMENT_TEAM = HER732L49Q;
-
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Petulia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -870,9 +868,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Petulia/Preview Content\"";
-
 				DEVELOPMENT_TEAM = HER732L49Q;
-
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Petulia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -78,5 +78,15 @@ extension AnimalKeys {
     static let email = "email"
     static let phone = "phone"
     static let address = "address"
+    
+    enum Address {
+      //TODO
+      static let address1 = "address1"
+      static let address2 = "address2"
+      static let city = "city"
+      static let state = "state"
+      static let postcode = "postcode"
+      static let country = "country"
+    }
   }
 }

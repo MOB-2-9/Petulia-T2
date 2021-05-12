@@ -12,7 +12,6 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
   var window: UIWindow?
-  @StateObject var viewRouter = ViewRouter()
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -63,8 +62,7 @@ extension SceneDelegate {
       let petDataController = PetDataController()
       let favoriteController = FavoriteController()
       let themeManager = ThemeManager()
-      let starterView = StarterView(viewRouter: self.viewRouter)
-      //let homeView = HomeView()
+      let starterView = StarterView(viewRouter: ViewRouter())
         .environmentObject(petDataController)
         .environmentObject(favoriteController)
         .environmentObject(themeManager)
