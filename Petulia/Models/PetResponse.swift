@@ -25,6 +25,7 @@ struct Animal: Codable, Identifiable {
   let distance: Double?
   let breeds: Breed?
   let contact: Contact
+  let score: Double?
   
   enum CodingKeys: String, CodingKey {
     case id
@@ -33,6 +34,7 @@ struct Animal: Codable, Identifiable {
     case status
     case publishedAt = "published_at"
     case contact
+    case score
   }
 }
 

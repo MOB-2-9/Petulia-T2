@@ -13,6 +13,7 @@ import MessageUI
 struct PetDetailView: View {
   
   var viewModel: PetDetailViewModel
+  var petType: String!
   @EnvironmentObject var favorites: FavoriteController
   @EnvironmentObject var theme: ThemeManager // to pass to sheets.
   @AppStorage(Keys.isDark) var isDark = false
@@ -42,6 +43,7 @@ struct PetDetailView: View {
           Spacer()
           contactInfoView()
             .padding(.horizontal, 100)
+            .padding(.vertical, 10)
         }
       }
     }
@@ -52,6 +54,9 @@ struct PetDetailView: View {
       }) {
         Image(systemName: "square.and.arrow.up")
       }
+    }
+    .onAppear {
+      Defaults.incrementPetType(petType: petType)
     }
   }
 }

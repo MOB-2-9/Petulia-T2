@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 class PetTypeController {
   private(set) var types: [PetType] = []
   private(set) var currentPetType: PetType  = .dog
@@ -19,6 +18,7 @@ class PetTypeController {
     types = createPetTypes()
     let savedPetTypeID = UserDefaults.standard.integer(forKey: Keys.savedPetTypeID)
     currentPetType = getPetType(by: savedPetTypeID) ?? .dog
+    Defaults.incrementPetType(petType: currentPetType.name)
   }
   
   private func createPetTypes() -> [PetType] {
@@ -41,6 +41,6 @@ class PetTypeController {
   func set(to petType: PetType) {
     self.currentPetType = petType
     UserDefaults.standard.set(currentPetType.id, forKey: Keys.savedPetTypeID)
+    Defaults.incrementPetType(petType: petType.name)
   }
-  
 }

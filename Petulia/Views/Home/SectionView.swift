@@ -13,7 +13,6 @@ enum SectionKind: String {
   case favorites = "Favorites"
 }
 
-
 struct SectionView: View {
   var kind: SectionKind
   var petViewModel: [PetDetailViewModel] = []
@@ -22,6 +21,7 @@ struct SectionView: View {
   var isLoading: Bool = false
   var primaryAction: (() -> Void)?
   var settingsAction: (() -> Void)?
+  var petType: String?
 
   private var unfilteredPetCount: Int {
     max(totalPetCount - petViewModel.count, 0)
@@ -97,7 +97,7 @@ private extension SectionView {
   
   func standardPetTiles() -> some View {
     ForEach(petViewModel.prefix(9)) { pet in
-      NavigationLink(destination: PetDetailView(viewModel:pet)) {
+      NavigationLink(destination: PetDetailView(viewModel: pet, petType: petType)) {
         TileView(title: pet.name, imagePath: pet.defaultImagePath(for: .medium))
           .frame(width: 150)
           .cornerRadius(10)

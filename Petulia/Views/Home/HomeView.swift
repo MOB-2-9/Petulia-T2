@@ -21,6 +21,8 @@ struct HomeView: View {
   @State private var showSettingsSheet = false
   @State var showMenu = false
   
+  @ObservedObject var topRecommendations = Recommender()
+  
   var filteredPets: [PetDetailViewModel] {
     if showOnlyPetsWithImages {
       return petDataController.allPets.filter { $0.photos.count > 0 }
@@ -176,7 +178,8 @@ private extension HomeView {
       title: "Recent \(petDataController.petType.currentPetType.name)".capitalized,
       isLoading: petDataController.isLoading,
       primaryAction: { requestWebData() },
-      settingsAction: { }
+      settingsAction: { },
+      petType: petDataController.petType.currentPetType.name
     )
   }
   
