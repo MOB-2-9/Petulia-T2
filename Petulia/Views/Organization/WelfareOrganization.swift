@@ -10,7 +10,18 @@ import Foundation
 import SwiftUI
 
 struct WelfareOrganization: View {
+  
+  @AppStorage(Keys.savedPostcode) var postcode = ""
+  
   var body: some View{
-    Text("This is the Welfare view")
+    //    Text("This is the Welfare view")
+    VStack {
+      
+      MapView(address: postcode)
+        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
+      
+    }
+    .navigationBarTitle("Organizations", displayMode: .inline)
+    
   }
 }
