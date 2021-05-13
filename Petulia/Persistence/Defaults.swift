@@ -34,8 +34,10 @@ struct Defaults {
     }
     if let score = petScores[petTypeKey] {
       petScores[petTypeKey] = score - 1
+      print("\(petTypeKey): \(score)")
     } else {
       petScores[petTypeKey] = -1
+      print("\(petTypeKey): -1")
     }
     UserDefaults.standard.set(petScores, forKey: Keys.petScores)
   }

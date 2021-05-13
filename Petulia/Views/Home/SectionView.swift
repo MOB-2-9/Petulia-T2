@@ -11,6 +11,7 @@ import SwiftUI
 enum SectionKind: String {
   case recent = "Recent"
   case favorites = "Favorites"
+  case recommended = "Recommended"
 }
 
 struct SectionView: View {

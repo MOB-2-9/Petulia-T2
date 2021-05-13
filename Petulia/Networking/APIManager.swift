@@ -48,24 +48,24 @@ class APIService: NetworkService {
     }
     return loadedSecret
   }
-
+  
   private var token: String {
     get { UserDefaults.standard.string(forKey: Keys.tokenKey) ?? "" }
     set {  UserDefaults.standard.setValue(newValue, forKey: Keys.tokenKey) }
   }
-
+  
   private var tokenExpirationDate: Date {
     get { UserDefaults.standard.object(forKey: Keys.tokenExpiration) as? Date ?? Date() }
     set { UserDefaults.standard.set(newValue, forKey: Keys.tokenExpiration) }
   }
-
+  
   // To decode server answer to a token request
   private struct TokenResponse: Decodable {
     let token_type: String
     let expires_in: Int
     let access_token: String
   }
-
+  
   func isTokenValid() -> Bool {
     let tokenDate = tokenExpirationDate
     let isValid = Date() < tokenDate && !token.isEmpty
@@ -112,7 +112,7 @@ class APIService: NetworkService {
     
     task.resume()
   }
-
+  
   func fetch<T: Decodable>( at endPoint: EndPoint, completion: @escaping (Result<T, Error>) -> Void) {
     if isTokenValid() {
       guard let url = endPoint.url else {
@@ -124,7 +124,7 @@ class APIService: NetworkService {
       request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
       request.httpMethod = method
       request.cachePolicy = .reloadRevalidatingCacheData
-
+      
       let session = URLSession.shared
       let task = session.dataTask(with: request) { data, response, error in
         if let error = error {
@@ -149,5 +149,81 @@ class APIService: NetworkService {
       }
     }
   }
-
+  
+  static func getPets(petType: PetType, limit: Int, completion: @escaping (_ pets: [PetDetailViewModel], _ error: String?) -> Void) {
+    
+    let url = URL(string: "https://api.petfinder.com/v2/animals/?type=\(petType.endPoint)&limit=\(limit)")!
+    
+    var request = URLRequest(url: url)
+    request.setValue("Bearer \(UserDefaults.standard.string(forKey: Keys.tokenKey) ?? "")", forHTTPHeaderField: "Authorization")
+    request.httpMethod = "GET"
+    request.cachePolicy = .reloadRevalidatingCacheData
+    
+    let session = URLSession.shared
+    let task = session.dataTask(with: request) { data, response, error in
+      if let error = error {
+        completion([], error.localizedDescription)
+      }
+      if let data = data {
+        do {
+          let animals = try JSONDecoder().decode(AllAnimals.self, from: data)
+          
+          DispatchQueue.main.async {
+            let pets = animals.animals!.compactMap { PetDetailViewModel(model: $0) }
+            completion(pets, nil)
+          }
+          
+        } catch let error {
+          print(error.localizedDescription)
+          completion([], nil)
+        }
+      }
+    }
+    task.resume()
+  }
+  
+  //  static func getRecommended(petType: PetType, completion: @escaping (_ pets: [PetDetailViewModel], _ error: String?) -> Void) {
+  static func getRecommended(firstPetType: PetType, secondPetType: PetType?, thirdPetType: PetType?, completion: @escaping (_ pets: [PetDetailViewModel], _ error: String?) -> Void) {
+    
+    var animals: [PetDetailViewModel] = []
+    
+    getPets(petType: firstPetType, limit: 10) { (pets, error) in
+      if let error = error {
+        return completion(animals, error)
+      }
+      animals.append(contentsOf: pets)
+      
+      if let secondPetType = secondPetType {
+        getPets(petType: secondPetType, limit: 6) { (pets, error) in
+          if let error = error {
+            return completion(animals, error)
+          }
+          animals.append(contentsOf: pets)
+          
+          if let thirdPetType = thirdPetType {
+            getPets(petType: thirdPetType, limit: 4) { (pets, error) in
+              if let error = error {
+                return completion(animals, error)
+              }
+              animals.append(contentsOf: pets)
+              
+              DispatchQueue.main.async {
+                completion(animals, nil)
+              }
+              
+            }
+          } else {
+            DispatchQueue.main.async {
+              completion(animals, nil)
+            }
+          }
+        }
+      } else {
+        DispatchQueue.main.async {
+          completion(animals, nil)
+        }
+      }
+    }
+  }
+  
 }

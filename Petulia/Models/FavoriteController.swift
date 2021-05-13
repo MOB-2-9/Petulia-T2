@@ -29,10 +29,6 @@ class FavoriteController: ObservableObject {
     }
   }
   
-  func save() {
-    storage.saveToDevice(list, to: .favorites)
-  }
-  
   func addToFavorite(pet: PetDetailViewModel) {
     guard !list.contains(pet) else { return }
     list.insert(pet, at: 0)

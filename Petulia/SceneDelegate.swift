@@ -59,10 +59,12 @@ extension SceneDelegate {
     } else {
       //user exist
       let petDataController = PetDataController()
+      let recommendedPetDataController = RecommendedPetDataController()
       let favoriteController = FavoriteController()
       let themeManager = ThemeManager()
       let homeView = HomeView()
         .environmentObject(petDataController)
+        .environmentObject(recommendedPetDataController)
         .environmentObject(favoriteController)
         .environmentObject(themeManager)
       window.rootViewController = UIHostingController(rootView: homeView)

@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 import FirebaseFirestore.FIRDocumentSnapshot
 
-struct PetDetailViewModel: Identifiable, Hashable, Codable {
+struct PetDetailViewModel: Identifiable, Hashable {
   
   var id: Int
   var urlString: String? = nil
@@ -29,6 +29,7 @@ struct PetDetailViewModel: Identifiable, Hashable, Codable {
   var shelterId: String
   var postedDate: String
   var contact: Contact?
+  var petType: PetType?
   
   var asDictionary: [String: Any] {
     get {
@@ -78,6 +79,9 @@ struct PetDetailViewModel: Identifiable, Hashable, Codable {
     let date = Date.date(dateString: model.publishedAt!)
     self.postedDate = date?.timeAgo() ?? "Some time ago"
     self.contact = model.contact
+    if let animalType = model.type {
+      self.petType = PetType(animalTypeName: animalType.lowercased())
+    }
   }
   
   init?(doc: DocumentSnapshot) {

@@ -35,7 +35,7 @@ final class PetDataController: ObservableObject {
 
   func requestPets(around postcode: String? = nil) {
     allPets = []
-
+    
     let type = petType.currentPetType.endPoint
     let filters = ["type": type, "location": postcode]
     let filtered = filters.compactMapValues { $0 }

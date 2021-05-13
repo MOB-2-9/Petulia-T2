@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
   @EnvironmentObject var petDataController: PetDataController
+  @EnvironmentObject var recommendedPetDataController: RecommendedPetDataController
   @EnvironmentObject var favorites: FavoriteController
   @EnvironmentObject var theme: ThemeManager
   
@@ -21,13 +22,20 @@ struct HomeView: View {
   @State private var showSettingsSheet = false
   @State var showMenu = false
   
-  @ObservedObject var topRecommendations = Recommender()
+//  @ObservedObject var topRecommendations = Recommender()
   
   var filteredPets: [PetDetailViewModel] {
     if showOnlyPetsWithImages {
       return petDataController.allPets.filter { $0.photos.count > 0 }
     }
     return petDataController.allPets
+  }
+  
+  var filteredRecommendedPets: [PetDetailViewModel] {
+    if showOnlyPetsWithImages {
+      return recommendedPetDataController.allPets.filter { $0.photos.count > 0 }
+    }
+    return recommendedPetDataController.allPets
   }
   
   var body: some View {
@@ -50,15 +58,16 @@ struct HomeView: View {
                 filterView().padding(.top)
                 petTypeScrollView()
                 recentPetSectionView()
+                recommendedSectionView()
                 favoritesSectionView()
               }
               .padding(.bottom)
             }
-              if typing {
-                KeyboardToolBarView() {
-                  requestWebData()
-                }
+            if typing {
+              KeyboardToolBarView() {
+                requestWebData()
               }
+            }
           }
           MenuView()
             .offset(x: self.showMenu ? 0 : -UIScreen.main.bounds.width)
@@ -66,7 +75,7 @@ struct HomeView: View {
                                           dampingFraction: 0.6, blendDuration: 0.6))
           Spacer()
         }
-          .gesture(drag)
+        .gesture(drag)
       }
       .navigationBarTitle("Petulia", displayMode: .large)
       .navigationBarItems(leading: (
@@ -151,7 +160,38 @@ private extension HomeView {
   //MARK: - Methods
   func requestWebData() {
     self.petDataController.requestPets(around: postcode.isEmpty ? nil : postcode)
+    self.recommendedPetDataController.requestPets()
   }
+  
+//  func getRecommendedPets() -> [PetDetailViewModel] {
+//    var recommendedPets: [PetDetailViewModel] = []
+//    var petTypeAndScore: [PetScore] = topRecommendations.petScores
+//
+//    petTypeAndScore.sort { $0.score > $1.score }
+//
+//    APIService.getRecommended(petType: petTypeAndScore[0].petType) { (pets, error) in
+//      for i in 0..<pets.count {
+//        if i == 10 { break }
+//        recommendedPets.append(pets[i])
+//      }
+//    }
+//
+//    APIService.getRecommended(petType: petTypeAndScore[1].petType) { (pets, error) in
+//      for i in 0..<pets.count {
+//        if i == 5 { break }
+//        recommendedPets.append(pets[i])
+//      }
+//    }
+//
+//    APIService.getRecommended(petType: petTypeAndScore[2].petType) { (pets, error) in
+//      for i in 0..<pets.count {
+//        if i == 4 { break }
+//        recommendedPets.append(pets[i])
+//      }
+//    }
+//
+//    return recommendedPets
+//  }
   
   //MARK: - Components
   
@@ -181,6 +221,18 @@ private extension HomeView {
       settingsAction: { },
       petType: petDataController.petType.currentPetType.name
     )
+  }
+  
+  func recommendedSectionView() -> some View {
+    SectionView(
+      kind: .recommended,
+      petViewModel: filteredRecommendedPets,
+      totalPetCount: recommendedPetDataController.allPets.count,
+      title: "Recommended",
+      isLoading: recommendedPetDataController.isLoading,
+      primaryAction: { requestWebData() },
+      settingsAction: { }
+      )
   }
   
   func favoritesSectionView() -> some View {

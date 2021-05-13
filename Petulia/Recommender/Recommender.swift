@@ -12,25 +12,44 @@ import CoreML
 
 struct PetScore {
   
-  var animalType: AnimalType
+  var petType: PetType
   var score: Double
   
-  init(name: String, score: Double) {
-    self.animalType = AnimalType(rawValue: name)!
+  init(animalTypeName: String, score: Double) {
+    self.petType = PetType(animalTypeName: animalTypeName)
     self.score = score
   }
 }
-
-enum AnimalType: String {
-  case dogs, cats, birds, furries, rabbits, horses, farmies, exotic
-}
-
 public class Recommender: ObservableObject {
   
   @Published var petScores = [PetScore]()
   
   init() {
     load()
+    
+//    var petTypeAndScore: [PetScore] = self.petScores
+//    petTypeAndScore.sort { $0.score > $1.score }
+//    
+//    APIService.getRecommended(petType: petTypeAndScore[0].petType) { (pets, error) in
+//      for i in 0..<pets.count {
+//        if i == 10 { break }
+//        Constants.recommendedPets.append(pets[i])
+//      }
+//    }
+//    
+//    APIService.getRecommended(petType: petTypeAndScore[1].petType) { (pets, error) in
+//      for i in 0..<pets.count {
+//        if i == 6 { break }
+//        Constants.recommendedPets.append(pets[i])
+//      }
+//    }
+//
+//    APIService.getRecommended(petType: petTypeAndScore[2].petType) { (pets, error) in
+//      for i in 0..<pets.count {
+//        if i == 5 { break }
+//        Constants.recommendedPets.append(pets[i])
+//      }
+//    }
   }
   
   func load() {
@@ -45,9 +64,9 @@ public class Recommender: ObservableObject {
       let result = try recommender.prediction(input: input)
       var tempPetScores = [PetScore]()
       
-      for name in result.recommendations {
-        let score = result.scores[name] ?? 0
-        tempPetScores.append(PetScore(name: name, score: score))
+      for animalTypeName in result.recommendations {
+        let score = result.scores[animalTypeName] ?? 0
+        tempPetScores.append(PetScore(animalTypeName: animalTypeName, score: score))
       }
       self.petScores = tempPetScores
     } catch(let error) {

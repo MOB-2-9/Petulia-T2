@@ -22,16 +22,7 @@ class PetTypeController {
   }
   
   private func createPetTypes() -> [PetType] {
-    return [
-      PetType(id: 0, name: "dogs", endPoint: "dog", iconName: "dog"),
-      PetType(id: 1, name: "cats", endPoint: "cat", iconName: "cat"),
-      PetType(id: 2, name: "birds", endPoint: "bird", iconName: "bird"),
-      PetType(id: 3, name: "furries", endPoint: "small-furry", iconName: "hamster"),
-      PetType(id: 4, name: "rabbits", endPoint: "rabbit", iconName: "rabbit"),
-      PetType(id: 5, name: "horses", endPoint: "horse", iconName: "horse"),
-      PetType(id: 6, name: "farmies", endPoint: "barnyard", iconName: "pig"),
-      PetType(id: 7, name: "exotic", endPoint: "scales-fins-other", iconName: "gecko")
-    ]
+    return PetType.allPetTypes
   }
   
   func getPetType(by id: Int) -> PetType? {
