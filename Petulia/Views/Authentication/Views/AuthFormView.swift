@@ -59,7 +59,7 @@ extension AuthFormView {
       Image(systemName: "person.fill").foregroundColor(.gray)
       TextField("name", text: $name)
         .autocapitalization(.words)
-        .foregroundColor(.accentColor)
+        .foregroundColor(.primary)
         .frame(height: 40.0)
     }
     .padding(.horizontal , 15)
@@ -75,8 +75,9 @@ extension AuthFormView {
       Image(systemName: "person").foregroundColor(.gray)
       TextField("email", text: $email)
         .keyboardType(.emailAddress)
-        .foregroundColor(.accentColor)
+        .foregroundColor(.primary)
         .frame(height: 40.0)
+        .autocapitalization(.none)
     }
     .padding(.horizontal , 15)
     .background(Color(red: 239/255, green: 243/255, blue: 244/255))
@@ -90,8 +91,9 @@ extension AuthFormView {
     HStack{
       Image(systemName: "lock").foregroundColor(.gray)
       SecureField("password", text: $password)
-        .foregroundColor(.accentColor)
+        .foregroundColor(.primary)
         .frame(height: 40.0)
+        .autocapitalization(.none)
     }
     .padding(.horizontal , 15)
     .background(Color(red: 239/255, green: 243/255, blue: 244/255))
