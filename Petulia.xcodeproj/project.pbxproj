@@ -15,6 +15,7 @@
 		1B94E852264B686B000462D9 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94E851264B686B000462D9 /* OnboardingView.swift */; };
 		1B94E854264B6CDA000462D9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94E853264B6CDA000462D9 /* PageViewController.swift */; };
 		1B94E856264B6E90000462D9 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94E855264B6E90000462D9 /* PageControl.swift */; };
+		1B94E858264CEF65000462D9 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94E857264CEF65000462D9 /* MotherView.swift */; };
 		1BEECF9C263B81FD009849E0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEECF9B263B81FD009849E0 /* MapView.swift */; };
 		5447E4F8262657A3009EAB80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */; };
 		54A46A2326266D00001033AA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A46A2226266D00001033AA /* LoginView.swift */; };
@@ -99,6 +100,7 @@
 		1B94E851264B686B000462D9 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		1B94E853264B6CDA000462D9 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		1B94E855264B6E90000462D9 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		1B94E857264CEF65000462D9 /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
 		1BEECF74263B38E7009849E0 /* Petfinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petfinder-Info.plist"; sourceTree = "<group>"; };
 		1BEECF9B263B81FD009849E0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		5447E4F7262657A3009EAB80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			children = (
 				1B94E84F264B6483000462D9 /* Subview.swift */,
 				1B94E851264B686B000462D9 /* OnboardingView.swift */,
+				1B94E857264CEF65000462D9 /* MotherView.swift */,
 				1B94E853264B6CDA000462D9 /* PageViewController.swift */,
 				1B94E855264B6E90000462D9 /* PageControl.swift */,
 			);
@@ -675,6 +678,7 @@
 				54AB30E02629165B00A801F5 /* AlertMessage.swift in Sources */,
 				54A46A2E262675C7001033AA /* UserDefaults+Extensions.swift in Sources */,
 				1B94E852264B686B000462D9 /* OnboardingView.swift in Sources */,
+				1B94E858264CEF65000462D9 /* MotherView.swift in Sources */,
 				7962EBFF258C97F400322283 /* ThemeManager.swift in Sources */,
 				79F93581258B75BF00C9CDCD /* ColoredLabeStyle.swift in Sources */,
 				791F4E46258217CC00C5F457 /* Color+Extension.swift in Sources */,
@@ -868,7 +872,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Petulia/Preview Content\"";
-				DEVELOPMENT_TEAM = HER732L49Q;
+				DEVELOPMENT_TEAM = 4KT624V79W;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Petulia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -892,7 +896,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Petulia/Preview Content\"";
-				DEVELOPMENT_TEAM = HER732L49Q;
+				DEVELOPMENT_TEAM = 4KT624V79W;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Petulia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

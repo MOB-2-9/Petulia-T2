@@ -49,15 +49,12 @@ struct PageViewController: UIViewControllerRepresentable {
       guard let index = parent.viewControllers.firstIndex(of: viewController) else {
         return nil
       }
-      
       //shows the last view controller when the user swipes back from the first view controller
       if index == 0 {
         return parent.viewControllers.last
       }
-      
       //show the view controller before the currently displayed view controller
       return parent.viewControllers[index - 1]
-      
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {

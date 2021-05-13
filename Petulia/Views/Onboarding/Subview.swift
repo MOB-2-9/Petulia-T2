@@ -18,5 +18,8 @@ struct Subview: View {
       .resizable()
       .aspectRatio(contentMode: .fit)
       .clipped()
+      .background(
+        RadialGradient(gradient: Gradient(colors: [.pinky, .white, .pink]), center: .center, startRadius: 50, endRadius: 500)
+      )
   }
 }
