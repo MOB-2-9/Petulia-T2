@@ -17,97 +17,99 @@ struct ProfileView: View {
   
   var body: some View{
     VStack {
+      Spacer()
       HStack {
-        Spacer()
         VStack {
-          Image("PetuliaLogo")
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: 200, height: 200)
-            .clipShape(Circle())
-            .clipped()
-            .padding()
-          Button(action: {
-            self.showImagePicker.toggle()
-          }) {
-            Text("Show image picker")
+          ZStack{
+            if image != nil {
+              image?
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 200, height: 200)
+                .clipShape(Circle())
+                .clipped()
+                .padding()
+            } else {
+              Image("PetuliaLogo")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 200, height: 200)
+                .clipShape(Circle())
+                .clipped()
+                .padding()
+            }
           }
-          image?.resizable().frame(width: 200, height: 200)
-            .aspectRatio(contentMode: .fill)
+          .onTapGesture {
+            self.showImagePicker = true
+          }
         }
         .sheet(isPresented: $showImagePicker) {
           ImagePicker(sourceType: .photoLibrary) { image in
             self.image = Image(uiImage: image)
           }
         }
-//          Text("Ben Simpson").font(.system(size: 45).bold())
-//            .padding(.top, 12)
-          
-        }
+      }
       Text("Ben Simpson").font(.system(size: 45).bold())
         .padding(.top, 12)
-        Spacer()
-    }.background(LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom))
       Spacer()
-    .navigationBarTitle("Profile")
-    }
+    }.background(LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom))
+    Spacer()
+      .navigationBarTitle("Profile")
   }
+}
 
 struct ImagePicker: UIViewControllerRepresentable {
-
-    @Environment(\.presentationMode)
-    private var presentationMode
-
-    let sourceType: UIImagePickerController.SourceType
-    let onImagePicked: (UIImage) -> Void
-
-    final class Coordinator: NSObject,
-    UINavigationControllerDelegate,
-    UIImagePickerControllerDelegate {
-
-        @Binding
-        private var presentationMode: PresentationMode
-        private let sourceType: UIImagePickerController.SourceType
-        private let onImagePicked: (UIImage) -> Void
-
-        init(presentationMode: Binding<PresentationMode>,
-             sourceType: UIImagePickerController.SourceType,
-             onImagePicked: @escaping (UIImage) -> Void) {
-            _presentationMode = presentationMode
-            self.sourceType = sourceType
-            self.onImagePicked = onImagePicked
-        }
-
-        func imagePickerController(_ picker: UIImagePickerController,
-                                   didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            let uiImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-            onImagePicked(uiImage)
-            presentationMode.dismiss()
-
-        }
-
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            presentationMode.dismiss()
-        }
-
+  
+  @Environment(\.presentationMode)
+  private var presentationMode
+  
+  let sourceType: UIImagePickerController.SourceType
+  let onImagePicked: (UIImage) -> Void
+  
+  final class Coordinator: NSObject,
+                           UINavigationControllerDelegate,
+                           UIImagePickerControllerDelegate {
+    
+    @Binding
+    private var presentationMode: PresentationMode
+    private let sourceType: UIImagePickerController.SourceType
+    private let onImagePicked: (UIImage) -> Void
+    
+    init(presentationMode: Binding<PresentationMode>,
+         sourceType: UIImagePickerController.SourceType,
+         onImagePicked: @escaping (UIImage) -> Void) {
+      _presentationMode = presentationMode
+      self.sourceType = sourceType
+      self.onImagePicked = onImagePicked
     }
-
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(presentationMode: presentationMode,
-                           sourceType: sourceType,
-                           onImagePicked: onImagePicked)
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+      let uiImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+      onImagePicked(uiImage)
+      presentationMode.dismiss()
     }
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.sourceType = sourceType
-        picker.delegate = context.coordinator
-        return picker
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+      presentationMode.dismiss()
     }
-
-    func updateUIViewController(_ uiViewController: UIImagePickerController,
-                                context: UIViewControllerRepresentableContext<ImagePicker>) {
-
-    }
-
+  }
+  
+  func makeCoordinator() -> Coordinator {
+    return Coordinator(presentationMode: presentationMode,
+                       sourceType: sourceType,
+                       onImagePicked: onImagePicked)
+  }
+  
+  func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+    let picker = UIImagePickerController()
+    picker.sourceType = sourceType
+    picker.delegate = context.coordinator
+    return picker
+  }
+  
+  func updateUIViewController(_ uiViewController: UIImagePickerController,
+                              context: UIViewControllerRepresentableContext<ImagePicker>) {
+    
+  }
 }
