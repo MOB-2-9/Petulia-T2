@@ -12,6 +12,8 @@ import SwiftUI
 struct WelfareOrganization: View {
   
   @AppStorage(Keys.savedPostcode) var postcode = ""
+  @EnvironmentObject var orgDataController: OrgDataController
+
   
   var body: some View{
     //    Text("This is the Welfare view")
@@ -22,6 +24,15 @@ struct WelfareOrganization: View {
       
     }
     .navigationBarTitle("Organizations", displayMode: .inline)
+    .onAppear { }
     
   }
+}
+
+extension WelfareOrganization {
+  
+  func fetchOrgs() {
+    self.orgDataController.requestOrgs(around: postcode.isEmpty ? "94108" : postcode)
+  }
+  
 }

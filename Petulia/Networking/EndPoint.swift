@@ -46,4 +46,8 @@ extension EndPoint {
     EndPoint(path: Keys.allTypesPath)
   }
   
+  static func organizations(queryItems: [URLQueryItem]) -> Self {
+    EndPoint(path: Keys.allOrgsPath, queryItems: queryItems)
+  }
+  
 }

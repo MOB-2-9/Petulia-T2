@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01A53BBF264DB794008F36A7 /* OrgsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A53BBE264DB793008F36A7 /* OrgsViewModel.swift */; };
+		01A53BC1264DBA71008F36A7 /* OrgDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A53BC0264DBA71008F36A7 /* OrgDataController.swift */; };
+		01A53BC3264DBB76008F36A7 /* OrgResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A53BC2264DBB76008F36A7 /* OrgResponse.swift */; };
 		1B2A0B3A2642252F00ECFB27 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A0B392642252F00ECFB27 /* MenuView.swift */; };
 		1B2A0B3C26423F5B00ECFB27 /* WelfareOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A0B3B26423F5B00ECFB27 /* WelfareOrganization.swift */; };
 		1B2A0B3F2642407200ECFB27 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2A0B3E2642407200ECFB27 /* ProfileView.swift */; };
@@ -86,6 +89,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01A53BBE264DB793008F36A7 /* OrgsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgsViewModel.swift; sourceTree = "<group>"; };
+		01A53BC0264DBA71008F36A7 /* OrgDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgDataController.swift; sourceTree = "<group>"; };
+		01A53BC2264DBB76008F36A7 /* OrgResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrgResponse.swift; sourceTree = "<group>"; };
 		158BE86E7F99D8C63797420F /* Pods-Petulia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petulia.release.xcconfig"; path = "Target Support Files/Pods-Petulia/Pods-Petulia.release.xcconfig"; sourceTree = "<group>"; };
 		1B2A0B392642252F00ECFB27 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1B2A0B3B26423F5B00ECFB27 /* WelfareOrganization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelfareOrganization.swift; sourceTree = "<group>"; };
@@ -310,6 +316,7 @@
 				695B350724D7022E00A15D26 /* PetResponse.swift */,
 				7982A49925711317005334DD /* FavoriteController.swift */,
 				54A46A3026267623001033AA /* Customer.swift */,
+				01A53BC2264DBB76008F36A7 /* OrgResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -389,6 +396,8 @@
 			children = (
 				695B350924D70A0100A15D26 /* PetDataController.swift */,
 				69E4432424E8820C00B8B3F1 /* PetDetailViewModel.swift */,
+				01A53BC0264DBA71008F36A7 /* OrgDataController.swift */,
+				01A53BBE264DB793008F36A7 /* OrgsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -647,6 +656,7 @@
 				79FF944C256A562D00149140 /* Collection+Extension.swift in Sources */,
 				54A46A2326266D00001033AA /* LoginView.swift in Sources */,
 				7965DDC7257A33F700829328 /* AdoptionFeedbackView.swift in Sources */,
+				01A53BBF264DB794008F36A7 /* OrgsViewModel.swift in Sources */,
 				69E4432524E8820C00B8B3F1 /* PetDetailViewModel.swift in Sources */,
 				79CA6E182594808D001E2FCF /* ServerPetTypes.swift in Sources */,
 				791F4E432581F9A000C5F457 /* SettingsView.swift in Sources */,
@@ -695,6 +705,7 @@
 				7905B21B2577AC1F00A55F37 /* String+Extension.swift in Sources */,
 				7982A49A25711317005334DD /* FavoriteController.swift in Sources */,
 				794E2CD625AB14E200234FDA /* SectionView.swift in Sources */,
+				01A53BC1264DBA71008F36A7 /* OrgDataController.swift in Sources */,
 				54AB30CF2629031A00A801F5 /* SignupView.swift in Sources */,
 				79792A6825ADD0CA00352FDD /* SettingsButton.swift in Sources */,
 				7905B2182577A27700A55F37 /* HTMLText.swift in Sources */,
@@ -702,6 +713,7 @@
 				79AA05BB258DF37F00A126B0 /* UIApplication+Extension.swift in Sources */,
 				1B2A0B3A2642252F00ECFB27 /* MenuView.swift in Sources */,
 				1B2A0B3C26423F5B00ECFB27 /* WelfareOrganization.swift in Sources */,
+				01A53BC3264DBB76008F36A7 /* OrgResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
