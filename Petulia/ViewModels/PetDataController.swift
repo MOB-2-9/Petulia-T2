@@ -37,6 +37,7 @@ final class PetDataController: ObservableObject {
     allPets = []
 
     let type = petType.currentPetType.endPoint
+//    let filters = ["type": type, "location": postcode, "gender": "Female", "age": "Baby", "size": "Small", "sort": "-distance"] //age (Baby, Young, Adult, Senior), gender ("Male", "Female"), size ("Small", "Medium", "Large", "Xlarge")
     let filters = ["type": type, "location": postcode]
     let filtered = filters.compactMapValues { $0 }
     print("filtered: \(filtered)")

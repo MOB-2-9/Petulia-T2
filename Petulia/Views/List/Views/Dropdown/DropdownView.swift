@@ -10,15 +10,13 @@ import SwiftUI
 
 struct DropdownView: View {
   let dropdownCornerRadius: CGFloat = 5
-  var options: [DropdownOption]
-  var onSelect: ((_ key: String) -> Void)?
+  @State var options: [DropdownOption]
   
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
       ForEach(0..<options.count, id: \.self) { index in
-//        DropdownOptionCell(title: option.title, onSelect: onSelect)
         let option = options[index]
-        DropdownOptionCell(option: option, onSelect: onSelect)
+        DropdownOptionCell(option: option) //I think option here should be binded
       }
     }
     .background(Color.white)
@@ -32,19 +30,14 @@ struct DropdownView: View {
 
 struct DropdownOptionCell: View {
   var option: DropdownOption
-//  var title: String
-//  var key: String
-  var onSelect: ((_ key: String) -> Void)?
   
   var body: some View {
     Button(action: {
-      if let onSelect = self.onSelect {
-        onSelect(option.title)
-//        self.option.isSelected.toggle()
-      }
+      print("dropdown cell tapped \(option.title)")
+      option.toggleIsSelected()
     }) {
       Text(option.title)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center) //makes the button selectable and highlighted on a wider area
     }
 //    .padding(.horizontal, 20)
 //    .frame(maxWidth: .infinity)
@@ -52,5 +45,16 @@ struct DropdownOptionCell: View {
     .background(
       option.isSelected ? Color.gray : Color.clear
     )
+  }
+}
+
+struct DropdownView_Previews: PreviewProvider {
+  static var previews: some View {
+    let options: [DropdownOption] = [
+      DropdownOption(title: "Eyo1", isSelected: true),
+      DropdownOption(title: "Eyo2 "),
+      DropdownOption(title: "Eyo3"),
+    ]
+    DropdownView(options: options)
   }
 }

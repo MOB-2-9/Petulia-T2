@@ -8,29 +8,36 @@
 
 import SwiftUI
 
-struct PetFilterView: View {
-  
-  @State var showStoreDropDown: Bool = false
-  let sortByOptions = [
-    DropdownOption(title: "Distance"),
+class FilterViewModel: ObservableObject {
+  @Published var sortByOptions = [
     DropdownOption(title: "Date", isSelected: true),
+    DropdownOption(title: "Distance"),
   ]
-  let ageOptions = [
+  @Published var ageOptions = [
     DropdownOption(title: "Baby"),
     DropdownOption(title: "Young"),
     DropdownOption(title: "Adult"),
     DropdownOption(title: "Senior"),
+    DropdownOption(title: "None"),
   ]
-  let genderOptions = [
+  @Published var genderOptions = [
     DropdownOption(title: "Male"),
     DropdownOption(title: "Female"),
+    DropdownOption(title: "None"),
   ]
-  let sizeOptions = [
+  @Published var sizeOptions = [
     DropdownOption(title: "Small"),
     DropdownOption(title: "Medium"),
     DropdownOption(title: "Large"),
     DropdownOption(title: "XLarge"),
+    DropdownOption(title: "None"),
   ]
+}
+
+struct PetFilterView: View {
+  
+  @State var showStoreDropDown: Bool = false
+  @ObservedObject var filterViewModel = FilterViewModel()
   
   let onSelect = { key in
     print("selected key:", key)
@@ -38,10 +45,10 @@ struct PetFilterView: View {
   
   var body: some View {
     HStack {
-      DropdownButton(displayText: .constant("Sort By"), options: sortByOptions, onSelect: onSelect)
-      DropdownButton(displayText: .constant("Age"), options: ageOptions, onSelect: onSelect)
-      DropdownButton(displayText: .constant("Gender"), options: genderOptions, onSelect: onSelect)
-      DropdownButton(displayText: .constant("Size"), options: sizeOptions, onSelect: onSelect)
+      DropdownButton(title: "Sort By", options: filterViewModel.sortByOptions)
+      DropdownButton(title: "Age", options: filterViewModel.ageOptions)
+      DropdownButton(title: "Gender", options: filterViewModel.genderOptions)
+      DropdownButton(title: "Size", options: filterViewModel.sizeOptions)
     }
   }
   
