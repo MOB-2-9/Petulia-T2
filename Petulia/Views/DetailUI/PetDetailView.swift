@@ -9,13 +9,15 @@
 import SwiftUI
 import Foundation
 import MessageUI
+import MapKit
 
 struct PetDetailView: View {
-  
   var viewModel: PetDetailViewModel
+  var addressLocation: Address?
   @EnvironmentObject var favorites: FavoriteController
   @EnvironmentObject var theme: ThemeManager // to pass to sheets.
   @AppStorage(Keys.isDark) var isDark = false
+  
   
   @State private var showAdoptionForm: Bool = false
   @State private var zoomingImage = false
@@ -23,6 +25,7 @@ struct PetDetailView: View {
   @State private var showingMailView = false
   @State private var showingPhoneAlert = false
   @State private var showingEmailAlert = false
+  
   
   var body: some View {
     ScrollView(.vertical, showsIndicators: false) {
@@ -36,6 +39,12 @@ struct PetDetailView: View {
             Spacer()
           }
           .padding()
+          if let postCode = viewModel.contact?.address?.postcode{
+            MapView(address: postCode)
+              .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/6, alignment: .center)
+              .padding()
+          }
+          
           characteristicScrollView()
           descriptionView()
             .padding()
